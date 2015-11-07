@@ -1,20 +1,18 @@
 controllers
-.controller('CarParkCtrl', ['$rootScope', '$scope', '$timeout', 'Place','$compile', 
-    function ($rootScope, $scope, $timeout, Place, $compile) {
+.controller('CarParkCtrl', ['$rootScope', '$scope', '$ionicPopup', 'Place', 'GeoLocalisation', 
+    function ($rootScope, $scope, $ionicPopup, Place, GeoLocalisation) {
     /**
      * Init des variables
      */
     $scope.isLoading = false;
-    $scope.loadingCarPark = false;
     $scope.items = false;
         
-    $scope.searchCarPark = function () {
-        $scope.loadingCarPark = true;
-        $rootScope.loading.show();
-        
-        Place.findFreePlaces('6.176248545363775', '48.695384785489395','1000').success(function (data) {
-            console.log('ok');
-            console.log(JSON.stringify(data));
+    $scope.loadingCarPark = true;
+    //$rootScope.loading.show();
+    
+    GeoLocalisation.getPosition().then(function (position) {
+        Place.findFreePlaces(position.coords.latitude, position.coords.longitude,'2000').success(function (data) {
+            console.log(data);
             $scope.items = data;
             $scope.loadingCarPark = false;
             $rootScope.loading.hide();
@@ -22,7 +20,13 @@ controllers
            $scope.items = false;
            $rootScope.loading.hide();
         });
-    };
+    }, function () {
+        $ionicPopup.alert({
+            title: 'Problème',
+            template: 'La géolocalisation n\'est pas fonctionnelle !'
+        });
+    });
+    
     
     $scope.searchRoute = function (item) {
         $scope.isLoading = true;
@@ -72,7 +76,6 @@ controllers
         
         directionsService.route(request, function(result, status) {
            if (status == google.maps.DirectionsStatus.OK) {
-               alert('test');
               directionsDisplay.setDirections(result);
            }
         });

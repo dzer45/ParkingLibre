@@ -1,27 +1,13 @@
 <ion-view hide-back-button="true">
     <ion-nav-title>
-        10 derniers ajouts
+        Chercher un parking
     </ion-nav-title>
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <ion-spinner ng-show="isLoading" icon="ripple" class="spinner-energized"></ion-spinner>
-    </ion-nav-buttons>
     <ion-content>
-        <ion-refresher pulling-text="Rafraichir les items..." on-refresh="rafraichirItemsLast()">
-        </ion-refresher>
-        <ion-list type="card" ng-show="itemsLast">
-            <ion-item ng-show="itemsLast.length==0" type="item-text-wrap">
-                Aucun item
-            </ion-item>
-            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in itemsLast" type="item-text-wrap" href="#/app/items/{{item.id}}">
-                <img ng-src="img/no-photo.png">
-                <span class="item-note">{{item.owner}}</span>
-                <h2>{{item.nom}}</h2>
-                <p>{{item.created|date:'medium'}}</p>
-                <i class="icon ion-chevron-right icon-accessory"></i>
-            </ion-item>
-        </ion-list>
+        <button ng-click="recherchePlaceLibre()" class="button button-block button-assertive">
+            <span class="icon ion-ios-navigate-outline"></span>
+        </button>
     </ion-content>
 </ion-view>

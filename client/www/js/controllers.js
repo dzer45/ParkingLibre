@@ -133,8 +133,8 @@ angular.module('starter.controllers', [])
     });
 }])
 
-.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$ionicModal', '$cordovaDialogs', 'Authentification', 
-    function($scope, $rootScope, $state, $ionicModal, $cordovaDialogs, Authentification) {
+.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$ionicModal', 'Authentification', 
+    function($scope, $rootScope, $state, $ionicModal, Authentification) {
     
     $scope.deconnexion = function () {
         Authentification.deconnexion();
@@ -178,11 +178,19 @@ angular.module('starter.controllers', [])
     $scope.rafraichirAdresse();
 }])
 
-.controller('AccueilCtrl', ['$scope', '$rootScope', 'Items', 
-    function($scope, $rootScope, Items) {
+.controller('AccueilCtrl', ['$scope', '$rootScope', '$timeout', 
+    function($scope, $rootScope, $timeout) {
     /**
      * Init variable
      */
+    $scope.isLoading = false;
+    
+    $scope.recherchePlaceLibre = function () {
+        $rootScope.loading.show();
+        $timeout(function () {
+            $rootScope.loading.hide();
+        }, 1000);
+    };
 }])
 .controller('ContentController', ['$scope', '$ionicSideMenuDelegate', 
     function ($scope, $ionicSideMenuDelegate) {

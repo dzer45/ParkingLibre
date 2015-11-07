@@ -1,0 +1,6 @@
+resources/
+!icon.png
+!splash.png
+node_modules/
+platforms/
+plugins/

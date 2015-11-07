@@ -6,7 +6,11 @@
         <button class="button button-clear button-positive"><i class="icon ion-ios-lightbulb-outline"></i></button>
     </ion-nav-buttons>
     <ion-content>
-        CarPark
+        <ion-list>
+            <ion-item ng-repeat="item in items.private | limitTo:3">
+                {{item.name}}
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>
 

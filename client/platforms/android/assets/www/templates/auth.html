@@ -1,0 +1,27 @@
+<ion-view>
+    <ion-nav-title>
+        Auth
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-positive" ng-click="modalInformation.show()"><i class="icon ion-ios-lightbulb-outline"></i></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="row row-center row-auth">
+            <div class="col col-center" ng-show="auth.isConnected">
+                Bienvenue sur notre application {{myUser.pseudo}} ({{myUser.mail}}) !
+                <br />
+                <br />
+                <a class="button button-outline button-energized" href="#/app/accueil">Go</a>
+            </div>
+        </div>
+        <div class="row row-center row-auth" ng-hide="auth.isConnected">
+            <div ng-hide="config.horsConnexion" class="col col-center" style="text-align: center">
+                <button class="button button-outline button-energized" ng-click="modalConnexion.show()">Connexion</button>
+                <button class="button button-outline button-energized" ng-click="modalInscription.show()">Inscription</button>
+            </div>
+            <div ng-show="config.horsConnexion" class="col col-center" style="text-align: center">
+                Vous devez être connecté pour accéder au mode hors connexion.
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

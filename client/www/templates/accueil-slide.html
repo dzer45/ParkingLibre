@@ -13,7 +13,7 @@
     <ion-content ng-init="items=false;">
         <ion-slide-box show-pager="show-pager">
             <ion-slide ng-controller="CarParkCtrl" style="background: #D9D9D9;">
-                <ion-list ng-show="items" type="card animated" ng-class="{'fadeInDown':items}">
+                <ion-list ng-hide="isLoading" ng-show="items" type="card animated" ng-class="{'fadeInDown':items}">
                     <ion-item class="item-avatar item-icon-right"  ng-click="searchRoute(item)" ng-repeat="item in items.private|limitTo:2" type="item-text-wrap">
                         <img ng-src="img/private.png">
                         <span class="item-note">100m</span>
@@ -30,7 +30,7 @@
                     </ion-item>
                 </ion-list>
 
-                <div id="map" ng-show="isLoading">Tototo</div>
+                <div id="map" ng-show="isLoading"></div>
          
                 <div class="row row-bottom" ng-hide="items" style="height:100%;">
                     <div class="col col-center col-33 col-offset-33">

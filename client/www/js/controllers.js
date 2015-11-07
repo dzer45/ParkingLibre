@@ -178,13 +178,24 @@ angular.module('starter.controllers', [])
     $scope.rafraichirAdresse();
 }])
 
-.controller('AccueilCtrl', ['$scope', '$rootScope', '$timeout', 'Place',
-    function($scope, $rootScope, $timeout, Place) {
+.controller('AccueilCtrl', ['$scope', '$rootScope', '$ionicModal', '$timeout', 'Place',
+    function($scope, $rootScope, $ionicModal, $timeout, Place) {
     /**
      * Init variable
      */
     $scope.isLoading = false;
     
+   
+    /**
+     * Modal des parametres
+     */
+    $ionicModal.fromTemplateUrl('templates/modal-parametres.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modalParametres = modal; 
+    });    
+        
 }])
 .controller('ContentController', ['$scope', '$ionicSideMenuDelegate', 
     function ($scope, $ionicSideMenuDelegate) {

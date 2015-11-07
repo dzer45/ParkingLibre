@@ -6,7 +6,9 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-var API_URL = "http://parkinglibre.thomasheymelot.com";
+/* En attendant que le server marche bien */
+var API_URL = "http://192.168.1.35/parkinglibre/";
+//var API_URL = "http://parkinglibre.thomasheymelot.com";
 
 /**
  * Check bug iphone 4

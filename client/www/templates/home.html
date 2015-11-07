@@ -8,7 +8,11 @@
     <ion-nav-buttons side="right">
         <button class="button button-clear button-positive" ng-click="modalParametres.show()"><i class="icon ion-ios-lightbulb-outline"></i></button>
     </ion-nav-buttons>
+
     <ion-content>
+    <div ng-show="user.logged">
+    	<h2>Bonjour {{user.login}}</h2>
+    </div>
         <ion-list>
             <ion-item nav-clear menu-close href="#/carpark">
                 Car park
@@ -19,6 +23,15 @@
             <ion-item nav-clear menu-close href="#/chargingstation">
                 Charging station
             </ion-item>
+            <ion-item nav-clear menu-close href="#/profile">
+                Profile
+            </ion-item>
+            <ion-item nav-clear menu-close ng-click="showLoginPopup()" ng-hide="user.logged">
+                Login
+            </ion-item>
+            <ion-item nav-clear menu-close ng-click="logout()" ng-show="user.logged">
+                Logout
+            </ion-item>            
     </ion-content>
 </ion-view>
 

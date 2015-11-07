@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 
 /* En attendant que le server marche bien */
-var API_URL = "http://192.168.1.35/parkinglibre/";
+var API_URL = "http://192.168.1.35/parkinglibre";
 //var API_URL = "http://parkinglibre.thomasheymelot.com";
 
 /**
@@ -85,13 +85,18 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         templateUrl: "templates/freeplace.html",
         controller: "FreePlaceCtrl"
     })
-    
     .state('home', {
         url: "/home",
         cache: false,
         templateUrl: "templates/home.html",
         controller: "HomeCtrl"
-    });
+    })
+    .state('profile', {
+        url: "/profile",
+        cache: false,
+        templateUrl: "templates/profile.html",
+        controller: "ProfileCtrl"
+    })
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/home');

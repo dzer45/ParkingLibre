@@ -6,12 +6,14 @@
         </button>
     </ion-nav-buttons>
     <ion-content>
-        <div ng-show="sendPlace" type="card animated"
-                ng-class="{'fadeInDown':sendPlace}">
-                <p>Merci d'avoir signalé une place vide ;)</p>
-                <p>Vous avez gagné 6 point !</p>
-        </div>
-
+		<ion-list>
+            <ion-item>
+                Login : {{user.login}}
+            </ion-item>
+            <ion-item>
+                Score : {{user.score}}
+            </ion-item>            
+    </ion-content>
     </ion-content> 
 </ion-view>
 

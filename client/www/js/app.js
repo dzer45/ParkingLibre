@@ -12,7 +12,7 @@ var API_URL = "http://parkinglibre.thomasheymelot.com";
  * Check bug iphone 4
  */
 
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.controller-carpark', 'starter.controller-chargingstation', 'starter.controller-freeplace', 'starter.services'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services'])
 
 .run(['$ionicPlatform', '$rootScope', '$timeout', '$cordovaNetwork', '$cordovaDialogs', '$ionicLoading', 'Config', 'Authentification', 'GeoLocalisation', 'User', function($ionicPlatform, $rootScope, $timeout, $cordovaNetwork, $cordovaDialogs, $ionicLoading, Config, Authentification, GeoLocalisation, User) {
     $ionicPlatform.ready(function() {
@@ -40,31 +40,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
                 $ionicLoading.hide();
             }
         };
-        console.log('okkkkkk!!!!');
-               
-        /**
-         * Gestion du OFFLINE ou ONLINE
-         */
-        $rootScope.config.horsConnexion = $cordovaNetwork.isOffline();
-        
-        if (!$rootScope.config.horsConnexion) {
-            $rootScope.config.mapsIsLoaded = true;
-        }
-        
-        // listen for Online event
-        $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-            $rootScope.config.horsConnexion = false;
-            $rootScope.modalHorsConnexion.hide();
-            $rootScope.$broadcast('isOnline');
-        });
-
-        // listen for Offline event
-        $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-            $rootScope.config.horsConnexion = true;
-            if (!$rootScope.config.modeHorsConnexion) {
-                $rootScope.modalHorsConnexion.show();
-            }
-        });
     });
 }])
 
@@ -90,69 +65,35 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     $stateProvider
 
     // setup an abstract state for the tabs directive
-    .state('auth', {
-        url: "/auth",
+    .state('carpark', {
+        url: "/carpark",
         cache: false,
-        templateUrl: "templates/auth.html",
-        controller: "AuthCtrl"
+        templateUrl: "templates/carpark.html",
+        controller: "CarParkCtrl"
+    })
+    .state('chargingstation', {
+        url: "/chargingstation",
+        cache: false,
+        templateUrl: "templates/chargingstation.html",
+        controller: "CarParkCtrl"
+    })
+    .state('freeplace', {
+        url: "/freeplace",
+        cache: false,
+        templateUrl: "templates/freeplace.html",
+        controller: "FreePlaceCtrl"
     })
     
-    /*.state('app', {
-        url: "/app",
-        abstract: true,
+    .state('home', {
+        url: "/home",
         cache: false,
-        //templateUrl: "templates/menu.html",
-        controller: "AppCtrl"
-    })*/
-
-    // Each tab has its own nav history stack:
-
-    .state('slide-carpark', {
-        url: "/slide-carpark",
-        cache: false,
-        templateUrl: "templates/slide-carpark.html",
-        controller: "CarParkCtrl"
-    })
-    .state('slide-chargingstation', {
-        url: "/slide-chargingstation",
-        cache: false,
-        templateUrl: "templates/slide-chargingstation.html",
-        controller: "CarParkCtrl"
-    })
-    .state('slide-freeplace', {
-        url: "/slide-freeplace",
-        cache: false,
-        templateUrl: "templates/slide-freeplace.html",
-        controller: "CarParkCtrl"
-    })
-    
-    .state('accueil', {
-        url: "/accueil",
-        cache: false,
-        templateUrl: "templates/accueil-slide.html",
-        controller: "AccueilCtrl"
-    })
-    /*.state('app.profil', {
-      url: '/profil',
-      views: {
-        'menu-content': {
-          templateUrl: 'templates/menu-profil.html',
-          controller: 'ProfilCtrl'
-        }
-      }
-    })
-    .state('app.parametres', {
-      url: '/parametres',
-      views: {
-        'menu-content': {
-          templateUrl: 'templates/menu-parametres.html',
-          controller: 'ParamsCtrl'
-        }
-      }
-    })*/
-    ;
+        templateUrl: "templates/home.html",
+        controller: "HomeCtrl"
+    });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/accueil');
+    $urlRouterProvider.otherwise('/home');
 
 });
+
+var controllers = angular.module('starter.controllers', []);

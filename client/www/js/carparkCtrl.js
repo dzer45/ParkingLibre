@@ -1,5 +1,4 @@
-angular.module('starter.controller-carpark', [])
-
+controllers
 .controller('CarParkCtrl', ['$rootScope', '$scope', '$timeout', 'Place','$compile', 
     function ($rootScope, $scope, $timeout, Place, $compile) {
     /**

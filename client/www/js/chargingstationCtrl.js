@@ -1,5 +1,4 @@
-angular.module('starter.controller-chargingstation', [])
-
+controllers
 .controller('ChargingStationCtrl', ['$scope', 
     function ($scope) {
     /**

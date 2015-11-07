@@ -1,5 +1,4 @@
-angular.module('starter.controller-freeplace', [])
-
+controllers
 .controller('FreePlaceCtrl', ['$scope', '$rootScope', '$http', 'Place',
                               function ($scope, $rootScope, $http, Place) {
 

@@ -13,7 +13,7 @@
 .slider { height: 100%; text-align: center }
 .scroll { height: 100% }
 
-.royal-style {
+/*.royal-style {
     //font-family: "Test2", Helvetica, Arial, sans-serif !important;
 }
 
@@ -62,12 +62,12 @@
 .royal-style.hors-connexion .bar  {
     background: #fe4545 !important;
 }
-
+*/
 .royal-style .bar {
     /*background: #8a6de9;*/ 
-    background: #ffc900 !important; 
+    //background: #ffc900 !important; 
 }
-
+/*
 .item-custom-border-bottom {
     border-top: none;
     border-bottom: 1px solid #ffc900 !important;
@@ -89,11 +89,11 @@
     background: #ab6500 !important; 
     color: #fce042 !important;
 }*/
-
+/*
 .button-opacity {
     /*background-image: url(../img/bg-item.png) !important;
     background-repeat: repeat !important;
-    background-position: top left !important;*/
+    background-position: top left !important;*//*
 }
 
 .royal-style .item.item-custom {
@@ -113,12 +113,19 @@
     background-repeat: repeat;
     background-position: top left;
 }*/
-
+/*
 .row-auth {
     margin-top: 30%;
     text-align: center;
     color: #fff;
 }
+
+.item-center {
+    text-align: center;
+    padding: 40px 0;
+    font-size: 1.4em;
+}
+*/
 
 .platform-android .tabs-item ion-content{
     padding-top: 44px !important;
@@ -135,8 +142,27 @@
     bottom: 0;
 }
 
-.item-center {
-    text-align: center;
-    padding: 40px 0;
-    font-size: 1.4em;
+.spinner svg {
+  width: 34px;
+  height: 34px;
+  stroke: #fff;
+  fill: #fff;
+}
+
+.cercle{
+    background:#ef473a;
+    border-radius:50%;
+    width:120px;
+    height:120px;
+    border:2px solid #679403; 
+    padding: 25px;
+}
+.cercle.disabled {
+    opacity: 0.3;
+}
+.cercle.disabled:hover {
+    opacity: 9.9;
+}
+.cercle > i {
+    font-size: 164px !important;
 }

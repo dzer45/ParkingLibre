@@ -55,8 +55,45 @@ angular.module('starter.controller-carpark', [])
         infowindow.open(map,marker);
         });
 
+       
         $scope.map = map;
+        
+        var directionsService = new google.maps.DirectionsService();
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+
+        current_pos = new google.maps.LatLng(40.4,-78);
+        end_pos = new google.maps.LatLng(6.176248545363775,48.695384785489395);
+       
+        var request = {
+           origin:current_pos,
+           destination:end_pos,
+           travelMode: google.maps.TravelMode.DRIVING
+        };
+        
+        
+        directionsService.route(request, function(result, status) {
+           if (status == google.maps.DirectionsStatus.OK) {
+               alert('test');
+              directionsDisplay.setDirections(result);
+           }
+        });
+        directionsDisplay.setMap(map); 
+          
+      google.maps.event.addDomListener(window, 'load', initialize);
     
+      $scope.centerOnMe = function() {
+        if(!$scope.map) {
+          return;
+        }
+        
+        navigator.geolocation.getCurrentPosition(function(pos) {
+          $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+          $scope.loading.hide();
+        }, function(error) {
+          alert('Unable to get location: ' + error.message);
+        });
+      };
+        
     };
      
 }]);

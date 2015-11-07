@@ -6,9 +6,16 @@
         <button class="button button-clear button-positive"><i class="icon ion-ios-lightbulb-outline"></i></button>
     </ion-nav-buttons>
     <ion-content>
-        <ion-slide-box>
+        <ion-slide-box show-pager="show-pager">
             <ion-slide ng-controller="CarParkCtrl">
-                <div ng-include src="{{'slide-carpark.html'}}"></div>
+                <div>
+                    
+                </div>
+                <div class="bar bar-footer">
+                    <button class="button button-clear">Left</button>
+                    <div class="title">Title</div>
+                    <button class="button button-clear">Right</button>
+                </div>
             </ion-slide>
             <ion-slide ng-controller="ChargingStationCtrl">
               <div class="box yellow"><h1>YELLOW</h1></div>

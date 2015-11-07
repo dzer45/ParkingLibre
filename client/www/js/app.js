@@ -153,6 +153,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/slide-carpark');
+    $urlRouterProvider.otherwise('/accueil');
 
 });

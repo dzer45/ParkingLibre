@@ -1,7 +1,7 @@
 angular.module('starter.controller-freeplace', [])
 
-.controller('FreePlaceCtrl', ['$scope', '$http' 
-    function ($scope,$http) {
+.controller('FreePlaceCtrl', ['$scope', '$rootScope', '$http', 
+    function ($scope, $rootScope, $http) {
 
 	$scope.freePlace = function(){
 		var x = 12;

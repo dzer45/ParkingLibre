@@ -60,9 +60,6 @@ class MapController
         $sth->execute();
         $resultPublic = $sth->fetchAll(PDO::FETCH_ASSOC);
 
-        $connector->disconnect();
-
-
         $dist = ($radiusBary / 6378137) * (180 / pi());
         $alreadyVisited;
         $newResultPublic = array();
@@ -106,6 +103,8 @@ class MapController
             $alreadyVisited[$value['id']] = true;
         }
 
+        $connector->disconnect();
+
         $composed = array('private' => $resultPrivate, 'public' => $newResultPublic);
 
         return $composed;
@@ -136,6 +135,28 @@ class MapController
             return $valid;
         }
         return false;
+    }
+
+    /**
+     * Random sensibilization sentence
+     *
+     * @url GET /sensibilization
+     */
+    public function getRandomSensibilizationSentence() {
+        $connector = new BDD();
+        $connector->connect();
+
+        $dbh = $connector->dbh;
+
+        $sth = $dbh->prepare('SELECT * FROM sensibilization_sentence ORDER BY RAND() LIMIT 1');
+
+        $sth->execute();
+
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        $connector->disconnect(); 
+
+        return $result;       
     }
 
     /**

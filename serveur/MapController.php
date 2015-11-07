@@ -160,6 +160,21 @@ class MapController
     }
 
     /**
+     * Random sensibilization sentence
+     *
+     * @url GET /air/quality
+     */
+
+    public function getAirQuality(){
+        $content = file_get_contents("http://www.air-lorraine.org/widget/widgetrss.php?id=54395");
+        $x = new SimpleXmlElement($content);
+        $indice = explode("indice de la qualité de l'air : ", $x->channel->item[0]->title)[1];
+        $quality = explode("L'indice de la qualité de l'air est : ", $x->channel->item[0]->description)[1];
+        $quality = explode(" ]]", $quality)[0];
+        return [$indice, $quality];
+    }
+
+    /**
      * Throws an error
      * 
      * @url GET /error
@@ -167,4 +182,5 @@ class MapController
     public function throwError() {
         throw new RestException(401, "Empty password not allowed");
     }
+
 }

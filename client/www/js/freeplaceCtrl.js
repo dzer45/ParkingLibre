@@ -11,7 +11,9 @@ controllers
 			$rootScope.loading.show();
 			console.log(position.coords.longitude + ' ' + position.coords.latitude);
 			Place.freePlace(position.coords.longitude,position.coords.latitude).success(function (data) {
-				$rootScope.user.score += 6;
+				if($rootScope.user){
+					$rootScope.user.score += 6;
+				}
 				$scope.sendPlace = true;
 				$scope.loadingFreePlace = false;
 				$rootScope.loading.hide();
@@ -21,7 +23,6 @@ controllers
 			});
 		});
 	};
-	$scope.freeMyPlace();
-	
+
 	
 }]);

@@ -164,10 +164,10 @@ angular.module('starter.services', [])
 .factory('Place', ['$http', function ($http) {
     return {
         findFreePlacesLimit: function (x,y,radius,limit) {
-            return $http.get(API_URL + '/map/findFreePlaces/'+x+'/'+y+'/'+radius+'/'+limit);
+            return $http.get(API_URL + '/map/findFreePlaces/'+y+'/'+x+'/'+radius+'/'+limit);
         },
         findFreePlaces: function (x,y,radius) {
-            return $http.get(API_URL + '/map/findFreePlaces/'+x+'/'+y+'/'+radius);
+            return $http.get(API_URL + '/map/findFreePlaces/'+y+'/'+x+'/'+radius);
         },
         freePlace: function (x,y) {
         	var req = {

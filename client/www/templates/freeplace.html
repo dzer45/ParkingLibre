@@ -6,8 +6,11 @@
         </button>
     </ion-nav-buttons>
     <ion-content>
-        <div ng-show="sendPlace" type="card animated"
-                ng-class="{'fadeInDown':sendPlace}">
+    	<div ng-hide="sendPlace">
+    		<p>Souhaitez vous signaler une place vide � votre position ?</p>
+    		<button type="button" class="btn btn-default" ng-click="freeMyPlace()">Signaler</button>
+    	</div>
+        <div ng-show="sendPlace">
                 <p>Merci d'avoir signalé une place vide ;)</p>
                 <p>Vous avez gagné 6 point !</p>
         </div>

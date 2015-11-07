@@ -7,8 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 
 /* En attendant que le server marche bien */
-var API_URL = "http://192.168.1.35/parkinglibre";
-//var API_URL = "http://parkinglibre.thomasheymelot.com";
+//var API_URL = "http://192.168.1.35/parkinglibre";
+var API_URL = "http://parkinglibre.thomasheymelot.com";
 
 /**
  * Check bug iphone 4
@@ -101,6 +101,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/home');
 
-});
+}).filter('html', function($sce){
+    return function(text){
+        return $sce.trustAsHtml(text);
+    };
+});;
 
 var controllers = angular.module('starter.controllers', []);

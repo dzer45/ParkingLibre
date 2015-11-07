@@ -1,0 +1,32 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <button class="button button-clear button-positive" ng-click="modalInscription.hide()"><i class="icon ion-ios-close-empty"></i></button>
+        <h1 class="title">Inscription</h1>
+    </ion-header-bar>
+    <ion-content class="has-header scroll-content">
+        <div class="row">
+            <div class="col assertive">{{formInscription.message|json}}</div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="item-input item-royal-style item-stacked-label" ng-class="{'label-show':formInscription.mail.length>0}">
+                    <span class="input-label animated" ng-class="{'flipInX':formInscription.mail.length>0}">E-mail</span>
+                    <input type="email" ng-model="formInscription.mail" placeholder="E-mail">
+                </label>
+                <label class="item-input item-royal-style item-stacked-label" ng-class="{'label-show':formInscription.password.length>0}">
+                    <span class="input-label animated" ng-class="{'flipInX':formInscription.password.length>0}">Mot de passe</span>
+                    <input type="password" ng-model="formInscription.password" placeholder="Mot de passe">
+                </label>
+                <label class="item-input item-royal-style item-stacked-label" ng-class="{'label-show':formInscription.pseudo.length>0}">
+                    <span class="input-label animated" ng-class="{'flipInX':formInscription.pseudo.length>0}">Pseudo</span>
+                    <input type="text" ng-model="formInscription.pseudo" placeholder="Pseudo">
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="button button-block button-outline button-energized" ng-click="inscription(formInscription)">Inscription</button>            
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

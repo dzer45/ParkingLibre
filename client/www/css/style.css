@@ -1,1 +1,140 @@
 /* Empty. Add your own CSS if you like */
+
+@font-face {
+    font-family: "Three Dots";
+    src: url('../fonts/Three_Dots.ttf');
+}
+
+@font-face {
+    font-family: "Test2";
+    src: url('../fonts/DesignsnPrintFont.ttf');
+}
+
+
+.royal-style {
+    //font-family: "Test2", Helvetica, Arial, sans-serif !important;
+}
+
+.royal-style .pane, .royal-style .view {
+    //font-family: "Test2", Helvetica, Arial, sans-serif !important;
+    background: url(../img/bg.jpg) center center no-repeat;
+    background-size: auto 100%;
+}
+
+.spinner svg {
+  width: 34px;
+  height: 34px;
+  stroke: #fff;
+  fill: #fff;
+}
+
+.item-pub {
+    font-size: 12px;
+}
+
+.item-royal-style {
+    padding-left: 0px !important;
+}
+
+.item-royal-style input {
+    border-bottom: 1px solid #d1d1d1 !important;
+}
+
+.item-royal-style input:hover, .item-royal-style input:focus, .item-royal-style input:active{
+    border-bottom: 1px solid #f9a938 !important;
+}
+
+.item-royal-style .input-label {
+    color: #ab6500 !important;
+    visibility: hidden !important;
+}
+
+.item-royal-style.label-show .input-label {
+    visibility: visible !important;
+}
+
+.item-royal-style.label-show input {
+    color: #ab6500 !important;
+}
+
+.royal-style.hors-connexion .bar  {
+    background: #fe4545 !important;
+}
+
+.royal-style .bar {
+    /*background: #8a6de9;*/ 
+    background: #ffc900 !important; 
+}
+
+.item-custom-border-bottom {
+    border-top: none;
+    border-bottom: 1px solid #ffc900 !important;
+}
+
+.royal-style .bar .button, .royal-style .bar .title, .royal-style .bar, .royal-style .tab-nav.tabs, .royal-style h2, .royal-style p {
+    color: #ab6500 !important;
+}
+
+.royal-style.hors-connexion.hors-connexion .bar .button, .royal-style.hors-connexion .bar .title, .royal-style.hors-connexion .bar {
+    color: #fff !important;
+}
+
+.royal-style .tab-nav.tabs {
+    background: #fce042 !important; 
+}
+/*
+.royal-style .item.item-divider {
+    background: #ab6500 !important; 
+    color: #fce042 !important;
+}*/
+
+.button-opacity {
+    /*background-image: url(../img/bg-item.png) !important;
+    background-repeat: repeat !important;
+    background-position: top left !important;*/
+}
+
+.royal-style .item.item-custom {
+    color: #ab6500 !important;
+    background: url(../img/bg-item.png) repeat top left !important;
+    background-color: transparent;
+}
+
+.royal-style .item.item-custom .item-content {
+    background-color: transparent;
+}
+
+
+/*.royal-style ion-item {
+    color: #ab6500 !important;
+    background-image: url(../img/bg-item.png);
+    background-repeat: repeat;
+    background-position: top left;
+}*/
+
+.row-auth {
+    margin-top: 30%;
+    text-align: center;
+    color: #fff;
+}
+
+.platform-android .tabs-item ion-content{
+    padding-top: 44px !important;
+}
+
+#map{
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.item-center {
+    text-align: center;
+    padding: 40px 0;
+    font-size: 1.4em;
+}

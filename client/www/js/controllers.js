@@ -178,18 +178,25 @@ angular.module('starter.controllers', [])
     $scope.rafraichirAdresse();
 }])
 
-.controller('AccueilCtrl', ['$scope', '$rootScope', '$timeout', 
-    function($scope, $rootScope, $timeout) {
+.controller('AccueilCtrl', ['$scope', '$rootScope', '$timeout', 'Place',
+    function($scope, $rootScope, $timeout, Place) {
     /**
      * Init variable
      */
     $scope.isLoading = false;
     
     $scope.recherchePlaceLibre = function () {
+        
         $rootScope.loading.show();
-        $timeout(function () {
+        
+        Place.findFreePlaces('6.176248545363775', '48.695384785489395','1').success(function (data) {
+            $scope.places = data;
             $rootScope.loading.hide();
-        }, 1000);
+        }).error(function () {
+           $scope.places = false;
+           $rootScope.loading.hide();
+        });
+        
     };
 }])
 .controller('ContentController', ['$scope', '$ionicSideMenuDelegate', 

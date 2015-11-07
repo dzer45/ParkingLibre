@@ -161,11 +161,11 @@ angular.module('starter.services', [])
     
 .factory('Place', ['$http', function ($http) {
     return {
-        findFreePlace: function (x,y,radius,limit) {
-            return $http.get('http://parking.thomasheymelot.com/'+x+'/'+y+'/'+radius+'/'+limit);
+        findFreePlacesLimit: function (x,y,radius,limit) {
+            return $http.get('http://parkinglibre.thomasheymelot.com/map/findFreePlaces/'+x+'/'+y+'/'+radius+'/'+limit);
         },
-        findFreePlace: function (x,y,radius) {
-            return $http.get('http://parking.thomasheymelot.com/'+x+'/'+y+'/'+radius);
+        findFreePlaces: function (x,y,radius) {
+            return $http.get('http://parkinglibre.thomasheymelot.com/map/findFreePlaces/'+x+'/'+y+'/'+radius);
         }
     };
 }]);

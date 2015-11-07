@@ -164,10 +164,17 @@ angular.module('starter.services', [])
 .factory('Place', ['$http', function ($http) {
     return {
         findFreePlacesLimit: function (x,y,radius,limit) {
-            return $http.get('http://parkinglibre.thomasheymelot.com/map/findFreePlaces/'+x+'/'+y+'/'+radius+'/'+limit);
+            return $http.get(API_URL + '/map/findFreePlaces/'+x+'/'+y+'/'+radius+'/'+limit);
         },
         findFreePlaces: function (x,y,radius) {
-            return $http.get('http://parkinglibre.thomasheymelot.com/map/findFreePlaces/'+x+'/'+y+'/'+radius);
+            return $http.get(API_URL + '/map/findFreePlaces/'+x+'/'+y+'/'+radius);
+        },
+        freePlace: function (x,y) {
+    		var payload = {
+    				"x" : x,
+    				"y" : y,
+    				"isFree" :"true"};
+        	return $http.post(API_URL + '/map/addPlaceInformation', payload);
         }
     };
 }]);

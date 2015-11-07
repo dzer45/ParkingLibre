@@ -1,17 +1,27 @@
-<ion-view>
-    <ion-nav-title>
-        FreePlace
-    </ion-nav-title>
-    <ion-nav-buttons side="right">
-        <button class="button button-clear button-positive"><i class="icon ion-ios-lightbulb-outline"></i></button>
-    </ion-nav-buttons>
-    <ion-content>
-        <button ng-click="freePlace()" class="button button-block button-assertive">
-            <span class="icon ion-ios-navigate-outline"></span>
-        </button>
-        {{send}}
-    </ion-content>
-</ion-view>
+<ion-view> <ion-nav-title> FreePlace </ion-nav-title> <ion-nav-buttons
+	side="right">
+<button class="button button-clear button-positive">
+	<i class="icon ion-ios-lightbulb-outline"></i>
+</button>
+</ion-nav-buttons> <ion-content>
+<div ng-show="sendPlace" type="card animated"
+	ng-class="{'fadeInDown':sendPlace}">
+	<p>Merci d'avoir signalé une place vide ;)</p>
+</div>
+<div class="box">
+	<h1>Je libère ma place !</h1>
+</div>
+
+<div class="row row-bottom" ng-hide="items" style="height: 100%;">
+	<div class="col col-center col-33 col-offset-33">
+		<div ng-click="freePlace()" class="cercle animated"
+			ng-class="{'zoomOut':loadingFreePlace}">
+			<i style="font-size: 64px; color: white;"
+				class="icon ion-ios-navigate-outline"></i>
+		</div>
+	</div>
+</div>
+</ion-content> </ion-view>
 
 
 

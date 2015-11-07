@@ -50,8 +50,19 @@
                 </div>
             </ion-slide>
             <ion-slide ng-controller="FreePlaceCtrl" style="background: #fff;">
-              <div class="box pink"><h1>PINK</h1></div>
-            </ion-slide>
+				<div ng-show="sendPlace" type="card animated" ng-class="{'fadeInDown':sendPlace}">
+		       		<p>Merci d'avoir signalé une place vide ;)</p>
+		       	</div>
+		       	<div class="box"><h1>Je libère ma place !</h1></div>
+
+                <div class="row row-bottom" ng-hide="items" style="height:100%;">
+                    <div class="col col-center col-33 col-offset-33">
+                        <div ng-click="freeMyPlace()" class="cercle animated" ng-class="{'zoomOut':loadingFreePlace}">
+                            <i style="font-size: 64px; color: white;" class="icon ion-ios-navigate-outline"></i>
+                        </div>
+                    </div>
+                </div>		        
+        	</ion-slide>
         </ion-slide-box>
         <div class="bar bar-footer">
             <div class="title">Info pollution</div>

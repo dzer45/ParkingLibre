@@ -1,7 +1,7 @@
 angular.module('starter.controller-carpark', [])
 
-.controller('CarParkCtrl', ['$rootScope', '$scope', '$timeout', 'Place', 
-    function ($rootScope, $scope, $timeout, Place) {
+.controller('CarParkCtrl', ['$rootScope', '$scope', '$timeout', 'Place','$compile', 
+    function ($rootScope, $scope, $timeout, Place, $compile) {
     /**
      * Init des variables
      */
@@ -27,7 +27,7 @@ angular.module('starter.controller-carpark', [])
     
     $scope.searchRoute = function (item) {
         $scope.isLoading = true;
-        var myLatlng = new google.maps.LatLng(item.x,item.y);
+        var myLatlng = new google.maps.LatLng(item.y,item.x);
         var mapOptions = {
           center: myLatlng,
           zoom: 16,

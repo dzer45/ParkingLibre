@@ -1,0 +1,23 @@
+<ion-view hide-back-button="true">
+    <ion-nav-title>Mon profil</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-balanced" ng-click="rafraichirAdresse()"><i class="icon ion-ios-refresh-empty"></i></button>
+        <ion-spinner ng-if="!adresse" icon="ripple"></ion-spinner>
+    </ion-nav-buttons>
+    <ion-content class="has-header scroll-content">
+        <ion-list type="card">
+            <ion-item class="item-text-wrap" ng-show="config.horsConnexion">
+                Une connexion internet est requise pour bénéficier de cette option.
+            </ion-item>
+            <div ng-hide="config.horsConnexion" class="item item-text-wrap" ng-repeat="adresse in adresses.results">
+                {{adresse.formatted_address}}
+            </div>
+            <div ng-hide="config.horsConnexion" class="item item-text-wrap">
+                {{position|json}}
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

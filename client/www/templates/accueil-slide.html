@@ -1,0 +1,22 @@
+<ion-view>
+    <ion-nav-title>
+        Accueil
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-positive"><i class="icon ion-ios-lightbulb-outline"></i></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-slide-box>
+            <ion-slide ng-controller="CarParkCtrl">
+                <div ng-include src="{{'slide-carpark.html'}}"></div>
+            </ion-slide>
+            <ion-slide ng-controller="ChargingStationCtrl">
+              <div class="box yellow"><h1>YELLOW</h1></div>
+            </ion-slide>
+            <ion-slide ng-controller="FreePlaceCtrl">
+              <div class="box pink"><h1>PINK</h1></div>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+</ion-view>
+

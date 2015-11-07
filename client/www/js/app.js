@@ -12,13 +12,12 @@ var API_URL = "http://api.com";
  * Check bug iphone 4
  */
 
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.controller-carpark', 'starter.controller-chargingstation', 'starter.controller-freeplace', 'starter.services'])
 
 .run(['$ionicPlatform', '$rootScope', '$timeout', '$cordovaNetwork', '$cordovaDialogs', '$ionicLoading', 'Config', 'Authentification', 'GeoLocalisation', 'User', function($ionicPlatform, $rootScope, $timeout, $cordovaNetwork, $cordovaDialogs, $ionicLoading, Config, Authentification, GeoLocalisation, User) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        console.log('okkkkkk!!!!');
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
@@ -98,26 +97,42 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         controller: "AuthCtrl"
     })
     
-    .state('app', {
+    /*.state('app', {
         url: "/app",
         abstract: true,
         cache: false,
-        templateUrl: "templates/menu.html",
+        //templateUrl: "templates/menu.html",
         controller: "AppCtrl"
-    })
+    })*/
 
     // Each tab has its own nav history stack:
 
-    .state('app.accueil', {
-      url: '/accueil',
-      views: {
-        'menu-content': {
-          templateUrl: 'templates/menu-accueil.html',
-          controller: 'AccueilCtrl'
-        }
-      }
+    .state('slide-carpark', {
+        url: "/slide-carpark",
+        cache: false,
+        templateUrl: "templates/slide-carpark.html",
+        controller: "CarParkCtrl"
     })
-    .state('app.profil', {
+    .state('slide-chargingstation', {
+        url: "/slide-chargingstation",
+        cache: false,
+        templateUrl: "templates/slide-chargingstation.html",
+        controller: "CarParkCtrl"
+    })
+    .state('slide-freeplace', {
+        url: "/slide-freeplace",
+        cache: false,
+        templateUrl: "templates/slide-freeplace.html",
+        controller: "CarParkCtrl"
+    })
+    
+    .state('accueil', {
+        url: "/accueil",
+        cache: false,
+        templateUrl: "templates/accueil-slide.html",
+        controller: "AccueilCtrl"
+    })
+    /*.state('app.profil', {
       url: '/profil',
       views: {
         'menu-content': {
@@ -134,9 +149,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
           controller: 'ParamsCtrl'
         }
       }
-    });
+    })*/
+    ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/accueil');
+    $urlRouterProvider.otherwise('/slide-carpark');
 
 });

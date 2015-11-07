@@ -10,6 +10,8 @@
     src: url('../fonts/DesignsnPrintFont.ttf');
 }
 
+.slider { height: 100%; text-align: center }
+.scroll { height: 100% }
 
 .royal-style {
     //font-family: "Test2", Helvetica, Arial, sans-serif !important;

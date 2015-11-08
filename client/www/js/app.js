@@ -34,14 +34,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         $rootScope.config = Config;
         $rootScope.myUser = {};
 
-        $rootScope.loading = {
-            show: function () {
-                $ionicLoading.show({ template: '<ion-spinner icon="ripple"></ion-spinner>' });
-            },
-            hide: function () {
-                $ionicLoading.hide();
-            }
-        };
     });
 }])
 
@@ -77,7 +69,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         url: "/chargingstation",
         cache: false,
         templateUrl: "templates/chargingstation.html",
-        controller: "CarParkCtrl"
+        controller: "ChargingStationCtrl"
     })
     .state('freeplace', {
         url: "/freeplace",

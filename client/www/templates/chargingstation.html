@@ -2,12 +2,13 @@
     <ion-nav-title>
         Charging station
     </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button ng-click="stopRoute()" class="button button-clear button-positive"><i class="icon ion-ios-close-empty"></i></button>
+    </ion-nav-buttons>
     <ion-content>
         <div id="map"></div>
         <div class="list borne-electrique card" ng-hide="start">
-            <div ng-click="choicePlace(item)" class="item">test</div>
-            <div ng-click="choicePlace(item)" class="item">test</div>
-            <div ng-click="choicePlace(item)" class="item">test</div>
+            <div ng-repeat="item in items | limitTo:3" ng-click="choicePlace(item)" class="item">{{item.nomDeLieu}}</div>
         </div>
         <div class="list card" ng-show="start">
             <div class="item item-text-wrap">

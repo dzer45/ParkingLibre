@@ -10,9 +10,9 @@
     src: url('../fonts/DesignsnPrintFont.ttf');
 }
 
-.slider { height: 100%; text-align: center }
+/*.slider { height: 100%; text-align: center }
 .scroll { height: 100% }
-
+*/
 .ionic_ratings .read_only {
   pointer-events:none;
 }
@@ -20,6 +20,59 @@
 .ionic_ratings .icon {
   font-size:150%;
   padding:1%;
+}
+
+.button-menu i.icon::before {
+    font-size: 90px;
+}
+
+.button-menu:hover {
+    color: white !important;
+}
+
+.button-menu {
+    color: white;
+    height: 150px !important;
+    font-size: 38px;
+}
+
+.button-cherche-place {
+    background: #9dcca0;
+    width: 300px;
+}
+
+.button-libere-place {
+    background: #8bd5e0;
+    width: 150px;
+}
+
+.button-borne-electrique {
+    background: #f79f8b;
+    width: 150px;
+}
+
+.list {
+    border-bottom: 3px solid #617961;
+    border-radius: 3px;
+}
+
+.list > .item {
+    color: white;
+    font-weight: bold;
+}
+
+.list.borne-electrique > .item:nth-child(2n+1) {
+    background: #9dcca0;
+}
+
+.list.borne-electrique > .item:nth-child(2n) {
+    background-color: #8ab48e;
+}
+
+.cercle-button.borne-electrique {
+    background: #9dcca0;
+    color: white;
+    box-shadow: 0px 0px 15px #888888;
 }
 
 /*.royal-style {
@@ -174,7 +227,7 @@
 
 .cercle-button {
     border-radius:50%;
-    box-shadow: 0px 0px 15px #888888;
+    box-shadow: 0px 0px 10px #888888;
     text-align: center;
     margin-left: 25%;
     margin-right: 25%;

@@ -1,10 +1,33 @@
 controllers
-.controller('HomeCtrl', ['$scope', '$rootScope', '$ionicModal', '$timeout', '$ionicPopup', 'Place',
-    function($scope, $rootScope, $ionicModal, $timeout, $ionicPopup, Place) {
+.controller('HomeCtrl', ['$scope', '$rootScope', '$ionicModal', '$timeout', '$state', '$ionicPopup', 'Place',
+    function($scope, $rootScope, $ionicModal, $timeout, $state, $ionicPopup, Place) {
     /**
      * Init variable
      */
     $scope.isLoading = false;
+    
+    $scope.dispache = false;
+    
+    $scope.cherchePlace = function () {
+        $scope.dispache = true;
+        $timeout(function () {
+            $state.go('carpark');
+        }, 1000);
+    };
+    
+    $scope.liberePlace = function () {
+        $scope.dispache = true;
+        $timeout(function () {
+            $state.go('freeplace');
+        }, 1000);
+    };
+    
+    $scope.borneElectrique = function () {
+        $scope.dispache = true;
+        $timeout(function () {
+            $state.go('chargingstation');
+        }, 1000);
+    };
 
     /**
      * Modal des parametres
@@ -53,6 +76,7 @@ controllers
     	$rootScope.user.logged = true;
     	$rootScope.user.score = 42;
     	$scope.closeModal();
+        $scope.rassemble = true;
     };
     
 }]);

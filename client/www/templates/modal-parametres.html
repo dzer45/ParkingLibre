@@ -12,9 +12,9 @@
           Rayon de recherche : {{radius}} m
         </div>
         <div class="item range">
+          <i class=" ">10</i>
+          <input type="range" name="Rayon" ng-model="radius" ng-change="setRadius(radius)" min="10" max="1000">
           <i class=" ">1000</i>
-          <input type="range" name="Rayon" ng-model="radius" ng-change="setRadius(radius)" min="1000" max="10000">
-          <i class=" ">10000</i>
         </div>
         <div class="item item-divider">
           Limite du nombre de parkings cherchés : {{limit}}

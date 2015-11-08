@@ -1,6 +1,6 @@
 controllers
-.controller('RootCtrl', ['$scope', '$rootScope','$timeout', 'Sensitize', 'AirQuality','$q',
-    function($scope, $rootScope, $timeout, Sensitize, AirQuality, $q) {
+.controller('RootCtrl', ['$scope', '$rootScope','$timeout', 'Sensitize', 'AirQuality', '$ionicModal','$q',
+    function($scope, $rootScope, $timeout, Sensitize, AirQuality, $ionicModal,$q) {
       $scope.elapsed = false;
       $timeout(function(){$scope.elapsed = true}, 10000);
 
@@ -18,8 +18,11 @@ controllers
         $scope.rate2 = new Array(5-num)
       });
 
-
+      $ionicModal.fromTemplateUrl('templates/modal-feedback.html', {
+          scope: $scope,
+          animation: 'slide-in-up'
+      }).then(function(modal) {
+          $rootScope.modalFeedback = modal; 
+      });   
       // var rate = parseInt(deferred.promise.data[0])
-
-
 }]);

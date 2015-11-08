@@ -209,11 +209,9 @@ class MapController
     public function getAirQualityGeo($lat, $lng){
         $serviceLink = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . explode("\"", explode("\"", $lat)[1])[0] . ',' . explode("\"", explode("\"", $lng)[1])[0]. '&sensor=true';
         $list = json_decode(file_get_contents($serviceLink));
-        echo $serviceLink;
         foreach($list->results[0]->address_components as $value){
             if($value->types[0] == "postal_code"){
                 $postal_code = $value->long_name;
-                echo "$value->long_name";
             }
         }
         $content = file_get_contents("http://www.air-lorraine.org/widget/widgetrss.php?id=".$this->code_commune[$postal_code]);

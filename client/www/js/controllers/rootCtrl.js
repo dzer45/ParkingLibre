@@ -1,7 +1,7 @@
 controllers
-.controller('RootCtrl', ['$scope', '$rootScope', '$ionicLoading','$timeout', 'Sensitize', 'AirQuality', '$ionicModal','$q',
-    function($scope, $rootScope, $ionicLoading, $timeout, Sensitize, AirQuality, $ionicModal,$q) {
-        
+.controller('RootCtrl', ['$scope', '$rootScope', '$ionicLoading','$timeout', 'Sensitize', 'AirQuality', '$ionicModal','$q', 'GeoLocalisation', '$ionicPopup',
+    function($scope, $rootScope, $ionicLoading, $timeout, Sensitize, AirQuality, $ionicModal,$q, GeoLocalisation, $ionicPopup) {
+
         $rootScope.loading = {
             show: function () {
                 $ionicLoading.show({ template: '<ion-spinner icon="ripple"></ion-spinner>' });
@@ -10,7 +10,7 @@ controllers
                 $ionicLoading.hide();
             }
         };
-        
+
         $scope.elapsed = false;
       $timeout(function(){$scope.elapsed = true}, 10000);
 

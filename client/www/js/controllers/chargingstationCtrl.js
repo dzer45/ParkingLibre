@@ -5,10 +5,6 @@ controllers
     /**
      * Init des variables
      */
-
-    /**
-     * Init des variables
-     */
     $scope.isLoading = false;
     $scope.items = false;
     $scope.hasChoice = false;
@@ -31,7 +27,6 @@ controllers
         $rootScope.loading.hide();
         $scope.modalTypePrise.show();
     });
-
 
     $scope.findPrise = function (type) {
         GeoLocalisation.getPosition().then(function (position) {
@@ -198,8 +193,6 @@ controllers
         content: compiled[0]
         });
 
-
-
         var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
@@ -210,7 +203,6 @@ controllers
         google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(map,marker);
         });
-
 
         $scope.map = map;
 
@@ -225,7 +217,6 @@ controllers
            destination:end_pos,
            travelMode: google.maps.TravelMode.DRIVING
         };
-
 
         directionsService.route(request, function(result, status) {
            if (status == google.maps.DirectionsStatus.OK) {

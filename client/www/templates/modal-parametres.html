@@ -9,12 +9,12 @@
       <div class="list">
         <ion-toggle ng-model="payingPark" ng-checked="payingPark" ng-change="setPaying(payingPark)">Parking Payant</ion-toggle>
         <div class="item item-divider">
-          Rayon : {{radius}} km
+          Rayon : {{radius}} m
         </div>
         <div class="item range">
-          <i class=" ">1</i>
-          <input type="range" name="Rayon" ng-model="radius" ng-change="setRadius(radius)" min="1" max="50">
-          <i class=" ">50</i>
+          <i class=" ">1000</i>
+          <input type="range" name="Rayon" ng-model="radius" ng-change="setRadius(radius)" min="1000" max="10000">
+          <i class=" ">10000</i>
         </div>
         <div class="item item-divider">
           Limite : {{limit}}

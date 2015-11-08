@@ -60,9 +60,9 @@ controllers
     $scope.loadingCarPark = true;
     $rootScope.loading.show();
 
-    if(!Place.payingPark){
+    if(Place.payingPark){
       GeoLocalisation.getPosition().then(function (position) {
-          Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude,'5000', 3).success(function (data) {
+          Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude, Place.radius, Place.limit).success(function (data) {
               $rootScope.loading.hide();
               if (data.public.length == 0 && data.private.length == 0) {
                   $ionicPopup.alert({

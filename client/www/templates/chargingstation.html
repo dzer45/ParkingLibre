@@ -1,11 +1,21 @@
 <ion-view>
     <ion-nav-title>
-        ChargingStation
+        Charging station
     </ion-nav-title>
     <ion-content>
-        ChargingStation
+        <div id="map"></div>
+        <div class="list borne-electrique card" ng-hide="start">
+            <div ng-click="choicePlace(item)" class="item">test</div>
+            <div ng-click="choicePlace(item)" class="item">test</div>
+            <div ng-click="choicePlace(item)" class="item">test</div>
+        </div>
+        <div class="list card" ng-show="start">
+            <div class="item item-text-wrap">
+                <span ng-bind-html="currentStep.instructions|html"></span> ({{currentStep.distance.text}}/{{currentStep.duration.text}})
+            </div>
+        </div>
+        <button ng-show="!start" type="button" class="button cercle-button borne-electrique" ng-click="startRoute()">Go</button>
     </ion-content>
 </ion-view>
-
 
 

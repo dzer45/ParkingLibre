@@ -7,13 +7,10 @@
     </ion-nav-buttons>
 
     <ion-content>
-        <div ng-show="user.logged">
-            <h2>Bonjour {{user.login}}</h2>
-        </div>
         <div style="position: absolute; left: 0; right: 0; top: 0; margin-top: 40px; bottom: 0; text-align: center;">
             <div class="row">
                 <div class="col">
-                    <button ng-click="cherchePlace()" class="button button-menu button-cherche-place">
+                    <button ng-class="{'zoomOutUp':dispache,'zoomInUp':rassemble}" ng-click="cherchePlace()" class="animated button button-menu button-cherche-place">
                         <span style="font-size: 20px; margin-right: 10px; padding-left: 10px; float: left; font-weight: bold; width: 180px; line-height: 20px; text-align: left;">Trouver une place de parking</span>
                         <i class="icon ion-search" style="float: right"></i>
                     </button>
@@ -21,10 +18,10 @@
             </div>
             <div class="row">
                 <div class="col col-center">
-                    <button ng-click="liberePlace()" class="button button-menu button-libere-place">
+                    <button ng-class="{'zoomOutLeft':dispache,'zoomInLeft':rassemble}" ng-click="liberePlace()" class="animated button button-menu button-libere-place">
                         <i class="icon ion-pin"></i>
                     </button>
-                    <button ng-click="borneElectrique()" class="button button-menu button-borne-electrique">
+                    <button ng-class="{'zoomOutRight':dispache,'zoomInRight':rassemble}" ng-click="borneElectrique()" class="animated button button-menu button-borne-electrique">
                         <i class="icon ion-flash"></i>
                     </button>
                 </div>

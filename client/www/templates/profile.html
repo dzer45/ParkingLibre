@@ -1,12 +1,33 @@
 <ion-view>
     <ion-nav-title> Mon Compte </ion-nav-title>
     <ion-content>
-		<ion-list>
+		<!-- <ion-list>
             <ion-item>
                 Login : {{user.login}}
             </ion-item>
             <ion-item>
                 Score : {{user.score}}
             </ion-item>
+
+            <div class="list card"> -->
+
+            <div class="list card">
+
+    <div class="item item-avatar">
+      <img src="{{player.image}}">
+      <h2>{{player.first_name}} {{player.last_name}}</h2>
+      <p>xp : {{player.exp}} <br/> niveau : {{player.level}}</p>
+    </div>
+
+    <div class="item item-image">
+      <p>Pseudo : {{player.username}}<br/>
+        E-mail : {{player.email}}
+      </P>
+
+    </div>
+</div>
+
+
+
     </ion-content>
 </ion-view>

@@ -225,6 +225,52 @@ class MapController
     }
 
     /**
+     * Find a charging station
+     *
+     * @url GET /map/findChargingStation/$typeDePrise
+     */
+    public function findChargingStation($typeDePrise) {
+        $connector = new BDD();
+        $connector->connect();
+
+        $dbh = $connector->dbh;
+
+        $sth = $dbh->prepare("SELECT * FROM point_recharge as a, prise_recharge as b
+            WHERE a.id = b.id_point_recharge AND a.etatDuPoint = 'Fonctionnel' AND b.typeDePrise = :typeDePrise");
+        $sth->bindValue(':typeDePrise', $typeDePrise);
+
+        $sth->execute();
+
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        $connector->disconnect(); 
+
+        return $result;  
+    }
+
+    /**
+     * Get all types of outlet
+     *
+     * @url GET /map/getAllTypesOfOutlet
+     */
+    public function getAllTypesOfOutlet() {
+        $connector = new BDD();
+        $connector->connect();
+
+        $dbh = $connector->dbh;
+
+        $sth = $dbh->prepare("SELECT typeDePrise FROM prise_recharge GROUP BY typeDePrise");
+
+        $sth->execute();
+
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        $connector->disconnect(); 
+
+        return $result; 
+    }
+
+    /**
      * Throws an error
      * 
      * @url GET /error

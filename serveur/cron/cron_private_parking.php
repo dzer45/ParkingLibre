@@ -13,8 +13,8 @@ $list = json_decode(file_get_contents($serviceLink));
 $stmt = $dbh->prepare("TRUNCATE TABLE private_parking");
 $stmt->execute();
 
-$stmt = $dbh->prepare("INSERT INTO private_parking (id, x, y, name, address, freePlaces, capacity, isFull, isClosed, isOpen) 
-	VALUES (null, :x, :y, :name, :address, :freePlaces, :capacity, :isFull, :isClosed, :isOpen)");
+$stmt = $dbh->prepare("INSERT INTO private_parking (id, x, y, name, address, freePlaces, capacity, isFull, isClosed, isOpen, tauxOccup, tauxDispo) 
+	VALUES (null, :x, :y, :name, :address, :freePlaces, :capacity, :isFull, :isClosed, :isOpen, :tauxOccup, :tauxDispo)");
 $stmt->bindParam(':x', $x);
 $stmt->bindParam(':y', $y);
 $stmt->bindParam(':name', $name);
@@ -24,6 +24,8 @@ $stmt->bindParam(':capacity', $capacity);
 $stmt->bindParam(':isFull', $isFull);
 $stmt->bindParam(':isClosed', $isClosed);
 $stmt->bindParam(':isOpen', $isOpen);
+$stmt->bindParam(':tauxOccup', $tauxOccup);
+$stmt->bindParam(':tauxDispo', $tauxDispo);
 foreach ($list->features as $key => $value) {
 	$x = $value->geometry->x;
 	$y = $value->geometry->y;
@@ -34,6 +36,8 @@ foreach ($list->features as $key => $value) {
 	$isFull = ($value->attributes->COMPLET == 'true') ? 1 : 0;
 	$isClosed = ($value->attributes->FERME == 'true') ? 1 : 0;
 	$isOpen = ($value->attributes->OUVERT == 'true') ? 1 : 0;
+	$tauxOccup = $value->attributes->TAUX_OCCUP;
+	$tauxDispo = $value->attributes->TAUX_DISPO;
 	$stmt->execute();
 }
 

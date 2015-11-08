@@ -1,6 +1,6 @@
 controllers
-.controller('HomeCtrl', ['$scope', '$rootScope', '$ionicModal', '$timeout', '$state', '$ionicPopup', 'Place',
-    function($scope, $rootScope, $ionicModal, $timeout, $state, $ionicPopup, Place) {
+.controller('HomeCtrl', ['$scope', '$rootScope', '$ionicModal', '$timeout', '$state', '$ionicPopup', 'Place', 'ngFB',
+    function($scope, $rootScope, $ionicModal, $timeout, $state, $ionicPopup, Place, ngFB) {
     /**
      * Init variable
      */
@@ -82,4 +82,15 @@ controllers
         $scope.rassemble = true;
     };
 
+    $scope.fbLogin = function () {
+        ngFB.login({scope: 'email'}).then(
+            function (response) {
+                if (response.status === 'connected') {
+                    console.log('Facebook login succeeded');
+                    $scope.closeLogin();
+                } else {
+                    alert('Facebook login failed');
+                }
+            });
+    };
 }]);

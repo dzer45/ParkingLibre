@@ -43,3 +43,14 @@ services.factory('AirQuality', ['$http', '$q', function ($http, $q) {
         }
     };
 }])
+
+service.factory('Prise', ['$http', function ($http) {
+    return {
+        typePrises: function () {
+            return $http.get(API_URL + '/map/getAllTypesOfOutlet');
+        },
+        findPrises: function (type) {
+            return $http.get(API_URL + '/map/findChargingStation/' + type);
+        }
+    };
+}])

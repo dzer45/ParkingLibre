@@ -25,4 +25,6 @@ services.factory('Place', ['$http', function ($http) {
         radius : window.localStorage.getItem('radius')||15,
         limit: window.localStorage.getItem('limit')||3
     };
+
 }]);
+

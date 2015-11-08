@@ -44,7 +44,7 @@ services.factory('AirQuality', ['$http', '$q', function ($http, $q) {
     };
 }])
 
-service.factory('Prise', ['$http', function ($http) {
+services.factory('Prise', ['$http', function ($http) {
     return {
         typePrises: function () {
             return $http.get(API_URL + '/map/getAllTypesOfOutlet');

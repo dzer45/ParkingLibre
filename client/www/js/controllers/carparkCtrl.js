@@ -62,7 +62,7 @@ controllers
 
     // if(Place.payingPark){
       GeoLocalisation.getPosition().then(function (position) {
-         $rootScope.modalFeedback.show(); 
+          // $rootScope.modalFeedback.show();
           Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude, Place.radius, Place.limit).success(function (data) {
               $rootScope.loading.hide();
               if (data.public.length == 0 && data.private.length == 0) {
@@ -111,6 +111,15 @@ controllers
     // } else {
       //find payink park
     // }
+    $scope.launchNav = function(){
+          // var destination = [ $scope.currentItem.y, $scope.currentItem.x];
+          // var start = [$scope.currentPosition.lng() , $scope.currentPosition.lat()]
+          window.launchnavigator.navigate("London, UK","Manchester, UK").then(function() {
+            console.log("Navigator launched");
+            }, function (err) {
+              console.error(err);
+            });
+    }
 
     $scope.ifArrive = function(){
         console.log("Function if arrive");

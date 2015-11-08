@@ -18,6 +18,7 @@
                 <span ng-bind-html="currentStep.instructions|html"></span> ({{currentStep.distance.text}}/{{currentStep.duration.text}})
             </div>
         </div>
+        <!-- <button ng-show="!start" type="button" class="button button-positive" ng-click="launchNav()">Go</button> -->
         <button ng-show="!start" type="button" class="button cercle-button button-positive" ng-click="startRoute()">Go</button>
     </ion-content>
 </ion-view>

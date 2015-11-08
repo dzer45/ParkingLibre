@@ -37,17 +37,17 @@
 }
 
 .button-cherche-place {
-    background: #9dcca0;
+    background: #f79f8b;
     width: 280px;
 }
 
 .button-libere-place {
-    background: #8bd5e0;
+    background: #9dcca0;
     width: 140px;
 }
 
 .button-borne-electrique {
-    background: #f79f8b;
+    background: #8bd5e0;
     width: 140px;
 }
 
@@ -207,7 +207,7 @@
 }
 
 .cercle{
-    background:#ef473a;
+    background:#f79f8b;
     border-radius:50%;
     width:120px;
     height:120px;

@@ -1,6 +1,6 @@
 controllers
-.controller('RootCtrl', ['$scope', '$rootScope', '$ionicLoading','$timeout', 'Sensitize', 'AirQuality', '$ionicModal','$q', 'GeoLocalisation', '$ionicPopup',
-    function($scope, $rootScope, $ionicLoading, $timeout, Sensitize, AirQuality, $ionicModal,$q, GeoLocalisation, $ionicPopup) {
+.controller('RootCtrl', ['$scope', '$state', '$rootScope', '$ionicLoading','$timeout', 'Sensitize', 'AirQuality', '$ionicModal','$q', 'GeoLocalisation', '$ionicPopup', 'Place',
+    function($scope, $state, $rootScope, $ionicLoading, $timeout, Sensitize, AirQuality, $ionicModal,$q, GeoLocalisation, $ionicPopup, Place) {
 
         $rootScope.loading = {
             show: function () {
@@ -41,4 +41,27 @@ controllers
       }).then(function(modal) {
           $rootScope.modalFeedback = modal;
       });
+
+      $scope.feedback = function(places){
+
+        if(places){
+          GeoLocalisation.getPosition().then(function(position){
+            Place.freePlace(position.coords.longitude, position.coords.latitude).success(function (data) {
+                  console.log('freeplace ok')
+            })
+          });
+        }
+        if($rootScope.user){
+                $rootScope.user.score += 6;
+        }
+
+        $ionicPopup.alert({
+            title: 'Merci d\'avoir signalé une place vide ;)',
+            template: 'Vous avez gagné 6 points !'
+        }).then(function(){
+          $state.go('home')
+        })
+        $rootScope.modalFeedback.hide();
+
+      }
 }]);

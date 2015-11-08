@@ -1,20 +1,17 @@
 <ion-modal-view>
     <ion-header-bar>
-        <button class="button button-clear button-positive" ng-click="modalInformation.hide()">
+        <button class="button button-clear button-positive" ng-click="modalFeedback.hide()">
             <i class="icon ion-ios-close-empty"></i></button>
-        <h1 class="title">Feedback</h1>
+        <h1 class="title">Il y a-t-il des places autour de moi</h1>
     </ion-header-bar>
     <ion-content>
-      <button class="button button-light">
-        No free places
+      <button class="button button-light" ng-click="feedback(true)">
+        Oui
       </button>
 
-      <button class="button button-stable">
-        1 - 2 free places
+      <button class="button button-stable" ng-click="feedback(false)">
+        Non
       </button>
 
-      <button class="button button-stable">
-        More than 3 free places
-      </button>
     </ion-content>
-</ion-modal-view>  
+</ion-modal-view>

@@ -60,8 +60,9 @@ controllers
     $scope.loadingCarPark = true;
     $rootScope.loading.show();
 
-    if(Place.payingPark){
+    // if(Place.payingPark){
       GeoLocalisation.getPosition().then(function (position) {
+        // $rootScope.modalFeedback.show(); pour test
           Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude, Place.radius, Place.limit).success(function (data) {
               $rootScope.loading.hide();
               if (data.public.length == 0 && data.private.length == 0) {
@@ -107,9 +108,9 @@ controllers
            * Callback go home
            */
       });
-    } else {
+    // } else {
       //find payink park
-    }
+    // }
 
     $scope.ifArrive = function(){
         console.log("Function if arrive");

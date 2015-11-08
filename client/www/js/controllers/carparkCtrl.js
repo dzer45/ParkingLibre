@@ -1,7 +1,9 @@
 controllers
 .controller('CarParkCtrl', ['$rootScope', '$scope', '$ionicPlatform', '$ionicPopup', '$cordovaGeolocation', '$state', '$timeout', 'Place', 'GeoLocalisation',
     function ($rootScope, $scope, $ionicPlatform, $ionicPopup, $cordovaGeolocation, $state, $timeout, Place, GeoLocalisation) {
-
+        
+        $scope.payingPark = Place.payingPark;
+        console.log($scope.payingPark);
 
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //:::                                                                         :::
@@ -62,10 +64,9 @@ controllers
 
     // if(Place.payingPark){
       GeoLocalisation.getPosition().then(function (position) {
-         $rootScope.modalFeedback.show(); 
           Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude, Place.radius, Place.limit).success(function (data) {
               $rootScope.loading.hide();
-              if (data.public.length == 0 && data.private.length == 0) {
+              if (data.length == 0) {
                   $ionicPopup.alert({
                       title: 'Problème',
                       template: 'Aucun parking ou place disponible dans les environs...'
@@ -200,6 +201,9 @@ controllers
                         $scope.map.setCenter($scope.currentPosition);
                         $scope.map.setZoom(18);
                     }, 1000);
+                    $timeout(function () {
+                        $rootScope.modalFeedback.show(); 
+                    }, 10000)
                 });
             }
         });

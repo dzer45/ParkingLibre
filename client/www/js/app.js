@@ -14,7 +14,7 @@ var API_URL = "http://parkinglibre.thomasheymelot.com";
  * Check bug iphone 4
  */
 
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'ionic-ratings'])
 
 .run(['$ionicPlatform', '$rootScope', '$timeout', '$cordovaNetwork', '$cordovaDialogs', '$ionicLoading', 'Config', 'Authentification', 'GeoLocalisation', 'User', function($ionicPlatform, $rootScope, $timeout, $cordovaNetwork, $cordovaDialogs, $ionicLoading, Config, Authentification, GeoLocalisation, User) {
     $ionicPlatform.ready(function() {
@@ -33,7 +33,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         $rootScope.auth = Authentification;
         $rootScope.config = Config;
         $rootScope.myUser = {};
-        
+
         $rootScope.loading = {
             show: function () {
                 $ionicLoading.show({ template: '<ion-spinner icon="ripple"></ion-spinner>' });
@@ -53,14 +53,14 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     $ionicConfigProvider.tabs.style('standard');
     $ionicConfigProvider.backButton.text('Retour');
     //$ionicConfigProvider.views.maxCache(0);
-    
-    
+
+
     /**
      * Http config
      */
     //$httpProvider.defaults.timeout = 8000;
     $httpProvider.interceptors.push('TokenInterceptor');
-    
+
     /**
      * Router config
      */

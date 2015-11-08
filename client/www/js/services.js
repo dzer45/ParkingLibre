@@ -10,8 +10,8 @@ angular.module('starter.services', [])
     };
 }])
 
-     
-          
+
+
 .factory('Authentification', ['$http', '$q', 'Config', function ($http, $q, Config) {
     var that = this;
     return {
@@ -86,7 +86,7 @@ angular.module('starter.services', [])
     var that = this;
     return {
         getPosition: function () {
-            var deferred = $q.defer(); 
+            var deferred = $q.defer();
             var posOptions = {timeout: 10000, enableHighAccuracy: false};
             $cordovaGeolocation
             .getCurrentPosition(posOptions)
@@ -99,7 +99,7 @@ angular.module('starter.services', [])
             return deferred.promise;
         },
         getAdresse: function (lat, lng) {
-            var deferred = $q.defer(); 
+            var deferred = $q.defer();
             $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true').success(function (data) {
                 if(data.results.length>0) {
                     deferred.resolve(data);
@@ -126,6 +126,29 @@ angular.module('starter.services', [])
             });
             return deferred.promise;
         }
+    };
+}])
+
+.factory('Sensitize', ['$http', '$q', function ($http, $q) {
+    return {
+        getSentence: function () {
+            return $http.get(API_URL+ '/sensibilization');
+        }
+    };
+}])
+
+.factory('AirQuality', ['$http', '$q', function ($http, $q) {
+    return {
+        getAirQuality: function () {
+            var deferred = $q.defer();
+            $http.get(API_URL+ '/air/quality').success(function (data) {
+                deferred.resolve(data);
+            }).error(function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        },
+        rate:null
     };
 }])
 
@@ -160,7 +183,7 @@ angular.module('starter.services', [])
         }
     };
  }])
-    
+
 .factory('Place', ['$http', function ($http) {
     return {
         findFreePlacesLimit: function (x,y,radius,limit) {

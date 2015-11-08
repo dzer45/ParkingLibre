@@ -1,6 +1,6 @@
 controllers
-.controller('HomeCtrl', ['$scope', '$rootScope', '$ionicModal', '$timeout', '$state', '$ionicPopup', 'Place', 'ngFB',
-    function($scope, $rootScope, $ionicModal, $timeout, $state, $ionicPopup, Place, ngFB) {
+.controller('HomeCtrl', ['$scope', '$rootScope', '$ionicModal', '$timeout', '$state', '$ionicPopup', 'Place',
+    function($scope, $rootScope, $ionicModal, $timeout, $state, $ionicPopup, Place) {
     /**
      * Init variable
      */
@@ -12,6 +12,14 @@ controllers
         $scope.dispache = true;
         $timeout(function () {
             $state.go('carpark');
+        }, 1000);
+    };
+
+
+    $scope.seeProfil = function () {
+        $scope.dispache = false;
+        $timeout(function () {
+            $state.go('profile');
         }, 1000);
     };
 
@@ -81,7 +89,7 @@ controllers
     	$scope.closeModal();
         $scope.rassemble = true;
     };
-
+    
     $scope.fbLogin = function () {
         ngFB.login({scope: 'email'}).then(
             function (response) {

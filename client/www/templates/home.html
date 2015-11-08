@@ -18,8 +18,8 @@
             </div>
             <div class="row">
                 <div class="col col-center">
-                    <button ng-class="{'zoomOutLeft':dispache,'zoomInLeft':rassemble}" ng-click="liberePlace()" class="animated button button-menu button-libere-place">
-                        <i class="icon ion-pin"></i>
+                    <button ng-controller="FreePlaceCtrl" ng-class="{'button-stable':swing,'zoomOutLeft':dispache,'zoomInLeft':rassemble}" ng-click="freeMyPlace()" class="animated button button-menu button-libere-place">
+                        <i class="icon ion-pin animated" ng-class="{'swing':swing}"></i>
                     </button>
                     <button ng-class="{'zoomOutRight':dispache,'zoomInRight':rassemble}" ng-click="borneElectrique()" class="animated button button-menu button-borne-electrique">
                         <i class="icon ion-flash"></i>
@@ -31,15 +31,17 @@
                     <img width="300" src="img/acceuil-fleches.png"/>
                 </div>
             </div>
-        </div>
-
-        <div style="position: absolute; bottom: 3%; width: 100%">
-            <div class="title" style="text-align: center">
-              Qualité de l'air<br>
-              <span ng-repeat="i in rate track by $index" class="ion-ios-cloud" style="font-size:150%;padding:1%"></span>
-              <span ng-repeat="i in rate2 track by $index" class="ion-ios-cloud-outline" style="font-size:150%;padding:1%"></span>
+            <div class="row">
+                <div style="width: 100%">
+                    <div class="title" style="text-align: center">
+                      Qualité de l'air<br>
+                      <span ng-repeat="i in rate track by $index" class="ion-ios-cloud" style="font-size:150%;padding:1%"></span>
+                      <span ng-repeat="i in rate2 track by $index" class="ion-ios-cloud-outline" style="font-size:150%;padding:1%"></span>
+                    </div>
+                </div>
             </div>
         </div>
+
     </ion-content>
     <div ng-class="{'animated fadeInUp': !elapsed, 'animated fadeOutDown':elapsed}" ng-hide="elapsed" ng-click="elapsed=!elapsed" style="position: absolute; bottom: 0px; width: 100%">
         <div style="text-align: center">

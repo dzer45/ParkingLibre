@@ -1,6 +1,7 @@
 controllers
-.controller('RootCtrl', ['$scope', '$rootScope','$timeout', 'Sensitize', 'AirQuality','$q', 'GeoLocalisation',
-    function($scope, $rootScope, $timeout, Sensitize, AirQuality, $q, $ionicPlatform, $ionicPopup, $cordovaGeolocation, GeoLocalisation) {
+.controller('RootCtrl', ['$scope', '$rootScope','$timeout', 'Sensitize', 'AirQuality', '$ionicModal','$q', 'GeoLocalisation',
+    function($scope, $rootScope, $timeout, Sensitize, AirQuality, $ionicModal,$q, GeoLocalisation) {
+
       $scope.elapsed = false;
       $timeout(function(){$scope.elapsed = true}, 10000);
 
@@ -24,4 +25,11 @@ controllers
 
           });
       });
+
+      $ionicModal.fromTemplateUrl('templates/modal-feedback.html', {
+          scope: $scope,
+          animation: 'slide-in-up'
+      }).then(function(modal) {
+          $rootScope.modalFeedback = modal;
+      });   
 }]);

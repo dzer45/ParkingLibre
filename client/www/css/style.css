@@ -38,25 +38,25 @@
 
 .button-cherche-place {
     background: #9dcca0;
-    width: 300px;
+    width: 280px;
 }
 
 .button-libere-place {
     background: #8bd5e0;
-    width: 150px;
+    width: 140px;
 }
 
 .button-borne-electrique {
     background: #f79f8b;
-    width: 150px;
+    width: 140px;
 }
 
-.list {
+.list.borne-electrique {
     border-bottom: 3px solid #617961;
     border-radius: 3px;
 }
 
-.list > .item {
+.list.borne-electrique > .item {
     color: white;
     font-weight: bold;
 }

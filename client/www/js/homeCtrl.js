@@ -15,13 +15,6 @@ controllers
         }, 1000);
     };
     
-    $scope.liberePlace = function () {
-        $scope.dispache = true;
-        $timeout(function () {
-            $state.go('freeplace');
-        }, 1000);
-    };
-    
     $scope.borneElectrique = function () {
         $scope.dispache = true;
         $timeout(function () {

@@ -1,6 +1,53 @@
 controllers
 .controller('CarParkCtrl', ['$rootScope', '$scope', '$ionicPlatform', '$ionicPopup', '$cordovaGeolocation', '$state', '$timeout', 'Place', 'GeoLocalisation', 
     function ($rootScope, $scope, $ionicPlatform, $ionicPopup, $cordovaGeolocation, $state, $timeout, Place, GeoLocalisation) {
+    
+
+    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //:::                                                                         :::
+    //:::  This routine calculates the distance between two points (given the     :::
+    //:::  latitude/longitude of those points). It is being used to calculate     :::
+    //:::  the distance between two locations using GeoDataSource (TM) prodducts  :::
+    //:::                                                                         :::
+    //:::  Definitions:                                                           :::
+    //:::    South latitudes are negative, east longitudes are positive           :::
+    //:::                                                                         :::
+    //:::  Passed to function:                                                    :::
+    //:::    lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)  :::
+    //:::    lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)  :::
+    //:::    unit = the unit you desire for results                               :::
+    //:::           where: 'M' is statute miles (default)                         :::
+    //:::                  'K' is kilometers                                      :::
+    //:::                  'N' is nautical miles                                  :::
+    //:::                                                                         :::
+    //:::  Worldwide cities and other features databases with latitude longitude  :::
+    //:::  are available at http://www.geodatasource.com                          :::
+    //:::                                                                         :::
+    //:::  For enquiries, please contact sales@geodatasource.com                  :::
+    //:::                                                                         :::
+    //:::  Official Web site: http://www.geodatasource.com                        :::
+    //:::                                                                         :::
+    //:::               GeoDataSource.com (C) All Rights Reserved 2015            :::
+    //:::                                                                         :::
+    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+    $scope.distance = function(lat1, lon1, lat2, lon2, unit) {
+        var radlat1 = Math.PI * lat1/180
+        var radlat2 = Math.PI * lat2/180
+        var radlon1 = Math.PI * lon1/180
+        var radlon2 = Math.PI * lon2/180
+        var theta = lon1-lon2
+        var radtheta = Math.PI * theta/180
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist)
+        dist = dist * 180/Math.PI
+        dist = dist * 60 * 1.1515
+        if (unit=="K") { dist = dist * 1.609344 }
+        if (unit=="N") { dist = dist * 0.8684 }
+        return dist
+    }
+
+
     /**
      * Init des variables
      */
@@ -11,11 +58,11 @@ controllers
     $scope.steps = false;
         
     $scope.loadingCarPark = true;
-    //$rootScope.loading.show();
+    $rootScope.loading.show();
     
     GeoLocalisation.getPosition().then(function (position) {
         Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude,'5000', 3).success(function (data) {
-            //$rootScope.loading.hide();
+            $rootScope.loading.hide();
             if (data.public.length == 0 && data.private.length == 0) {
                 $ionicPopup.alert({
                     title: 'Problème',
@@ -45,7 +92,7 @@ controllers
             }
         }).error(function () {
            $scope.items = false;
-           //$rootScope.loading.hide();
+           $rootScope.loading.hide();
         });
     }, function () {
         $ionicPopup.alert({
@@ -59,7 +106,18 @@ controllers
          * Callback go home
          */
     });
-    
+
+    $scope.ifArrive = function(){
+        console.log("Function if arrive");
+        console.log($scope.distance($scope.currentPos.latitude, $scope.currentPos.longitude, $scope.currentItem.y, $scope.currentItem.x, "K"));
+        if($scope.distance($scope.currentPos.latitude, $scope.currentPos.longitude, $scope.currentItem.y, $scope.currentItem.x, "K") < 0.1){
+            console.log("arriving soon");
+            $scope.stopTimeout();
+            $rootScope.modalFeedback.show();
+            $scope.stopRoute(); 
+        }
+    }
+
     $scope.startTimeout = function () {
         console.log('start1');
         GeoLocalisation.getPosition().then(function (position) {
@@ -68,6 +126,7 @@ controllers
             $scope.currentPos = position.coords;
             $scope.marker.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
             $scope.map.setCenter($scope.marker.getPosition());
+            $scope.ifArrive();
             $scope.promiseTimeout = $timeout(function () {
                 console.log('start3');
                 $scope.startTimeout();
@@ -76,6 +135,7 @@ controllers
     };
     
     $scope.stopTimeout = function () {
+        console.log("Stop Timeout");
         $timeout.cancel($scope.promiseTimeout);
     };
     
@@ -130,7 +190,7 @@ controllers
                 $scope.$apply(function () {
                     $scope.steps = result.routes[0].legs[0].steps;
                     console.log($scope.steps);
-                    $scope.currentStep = $scope.steps[0];
+                    $scope.ng = $scope.steps[0];
                     $timeout(function() {
                         $scope.map.setCenter($scope.currentPosition);
                         $scope.map.setZoom(18);

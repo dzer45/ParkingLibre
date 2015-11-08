@@ -3,16 +3,27 @@
         CarPark
     </ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-clear button-positive"><i class="icon ion-ios-lightbulb-outline"></i></button>
+        <button ng-show="start" ng-click="stopRoute()" class="button button-clear button-positive"><i class="icon ion-ios-close-empty"></i></button>
+        <button ng-hide="start" class="button button-clear button-positive"><i class="icon ion-ios-lightbulb-outline"></i></button>
     </ion-nav-buttons>
     <ion-content>
-        <ion-list>
-            <ion-item ng-repeat="item in items.private | limitTo:3">
+        <div id="map"></div>
+        <div class="list card" ng-hide="start">
+            <ion-item ng-click="choicePlace(item)" class="item-avatar-left" ng-repeat="item in items.private | limitTo:3">
+                <img height="16" src="img/private.png">
                 {{item.name}}
+                <ion-option-button class="button-energized">
+                    <i class="icon ion-ios-compose-outline"></i>
+                </ion-option-button>
             </ion-item>
-        </ion-list>
+        </div>
+        <div class="list card" ng-show="start">
+            <div class="item item-text-wrap">
+                <span ng-bind-html="currentStep.instructions|html"></span> ({{currentStep.distance.text}}/{{currentStep.duration.text}})
+            </div>
+        </div>
+        <button ng-show="!start" type="button" class="button cercle-button button-positive" ng-click="startRoute()">Go</button>
     </ion-content>
 </ion-view>
-
 
 

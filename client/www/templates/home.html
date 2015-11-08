@@ -2,13 +2,14 @@
     <ion-nav-title>
         Accueil
     </ion-nav-title>
-    <ion-nav-buttons side="left">
-        <button class="button button-clear button-positive"><i class="icon ion-ios-close-empty"></i></button>
-    </ion-nav-buttons>
     <ion-nav-buttons side="right">
         <button class="button button-clear button-positive" ng-click="modalParametres.show()"><i class="icon ion-ios-lightbulb-outline"></i></button>
     </ion-nav-buttons>
+
     <ion-content>
+    <div ng-show="user.logged">
+    	<h2>Bonjour {{user.login}}</h2>
+    </div>
         <ion-list>
             <ion-item href="#/carpark">
                 Car park
@@ -19,19 +20,36 @@
             <ion-item href="#/chargingstation">
                 Charging station
             </ion-item>
-          </ion-list>
+            <ion-item nav-clear menu-close href="#/profile">
+                Profile
+            </ion-item>
+            <ion-item nav-clear menu-close ng-click="showLoginPopup()" ng-hide="user.logged">
+                Login
+            </ion-item>
+            <ion-item nav-clear menu-close ng-click="logout()" ng-show="user.logged">
+                Logout
+            </ion-item>
+        </ion-list>
+
+        <div style="position: absolute; bottom: 3%; width: 100%">
+            <div class="title" style="text-align: center">
+              <!-- Qualité de l'air<ionic-ratings ratingsobj='ratings'></ionic-ratings> -->
+              {{ratings}}
+            </div>
+        </div>
     </ion-content>
 
-    <div ng-class="{'animated fadeInUp': !elapsed, 'animated fadeOutDown':elapsed}" ng-hide="elapsed" style="position: absolute; bottom: 0px; width: 100%">
-        <div style="text-align: center">
-          <div class="card">
-            <div class="item item-divider">
-              Informations
-            </div>
-            <div class="item item-text-wrap energized">
-              blabla
-            </div>
-          </div>
-        </div>
-    </div>
 </ion-view>
+
+<div ng-class="{'animated fadeInUp': !elapsed, 'animated fadeOutDown':elapsed}" ng-hide="elapsed" ng-click="elapsed=!elapsed" style="position: absolute; bottom: 0px; width: 100%">
+    <div style="text-align: center">
+      <div class="card">
+        <!-- <div class="item item-divider">
+          Informations
+        </div> -->
+        <div class="item item-text-wrap energized">
+          {{sentence}}
+        </div>
+      </div>
+    </div>
+</div>

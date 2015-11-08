@@ -7,11 +7,23 @@
     </ion-header-bar>
     <ion-content>
       <div class="list">
-        <ion-toggle ng-repeat="item in settingsList"
-                    ng-model="item.checked" 
-                    ng-checked="item.checked">
-          {{ item.text }}
-        </ion-toggle>        
-      </div> 
+        <ion-toggle ng-model="payingPark" ng-checked="payingPark" ng-change="setPaying(payingPark)">Parking Payant</ion-toggle>
+        <div class="item item-divider">
+          Rayon : {{radius}} km
+        </div>
+        <div class="item range">
+          <i class=" ">1</i>
+          <input type="range" name="Rayon" ng-model="radius" ng-change="setRadius(radius)" min="1" max="50">
+          <i class=" ">50</i>
+        </div>
+        <div class="item item-divider">
+          Limite : {{limit}}
+        </div>
+        <div class="item range">
+          <i class=" ">1</i>
+          <input type="range" name="Limite" ng-model="limit" ng-change="setLimit(limit)" min="1" max="25">
+          <i class=" ">25</i>
+        </div>
+      </div>
     </ion-content>
-</ion-modal-view>  
+</ion-modal-view>

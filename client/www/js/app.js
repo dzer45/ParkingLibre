@@ -14,7 +14,7 @@ var API_URL = "http://parkinglibre.thomasheymelot.com";
  * Check bug iphone 4
  */
 
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'ionic-ratings'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services'])
 
 .run(['$ionicPlatform', '$rootScope', '$timeout', '$cordovaNetwork', '$cordovaDialogs', '$ionicLoading', 'Config', 'Authentification', 'GeoLocalisation', 'User', function($ionicPlatform, $rootScope, $timeout, $cordovaNetwork, $cordovaDialogs, $ionicLoading, Config, Authentification, GeoLocalisation, User) {
     $ionicPlatform.ready(function() {
@@ -108,3 +108,4 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
 });;
 
 var controllers = angular.module('starter.controllers', []);
+var services = angular.module('starter.services', []);

@@ -1,7 +1,7 @@
 controllers
-.controller('CarParkCtrl', ['$rootScope', '$scope', '$ionicPlatform', '$ionicPopup', '$cordovaGeolocation', '$state', '$timeout', 'Place', 'GeoLocalisation', 
+.controller('CarParkCtrl', ['$rootScope', '$scope', '$ionicPlatform', '$ionicPopup', '$cordovaGeolocation', '$state', '$timeout', 'Place', 'GeoLocalisation',
     function ($rootScope, $scope, $ionicPlatform, $ionicPopup, $cordovaGeolocation, $state, $timeout, Place, GeoLocalisation) {
-    
+
 
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //:::                                                                         :::
@@ -56,56 +56,60 @@ controllers
     $scope.hasChoice = false;
     $scope.start = false;
     $scope.steps = false;
-        
+
     $scope.loadingCarPark = true;
     $rootScope.loading.show();
-    
-    GeoLocalisation.getPosition().then(function (position) {
-        Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude,'5000', 3).success(function (data) {
-            $rootScope.loading.hide();
-            if (data.public.length == 0 && data.private.length == 0) {
-                $ionicPopup.alert({
-                    title: 'Problème',
-                    template: 'Aucun parking ou place disponible dans les environs...'
-                }).then(function(res) {
-                    $state.go('home');
-                });
-            }
-            else {
-                $scope.items = data;
-                $scope.loadingCarPark = false;
 
-                /**
-                 * Si tout est ok, je charge la map
-                 */
-                $scope.currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                var mapOptions = {
-                    center: $scope.currentPosition,
-                    zoom: 16,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    disableDefaultUI: true
-                }
-                $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                $scope.directionsService = new google.maps.DirectionsService();
-                $scope.directionsDisplay = new google.maps.DirectionsRenderer();
-                $scope.directionsDisplay.setMap($scope.map);
-            }
-        }).error(function () {
-           $scope.items = false;
-           $rootScope.loading.hide();
-        });
-    }, function () {
-        $ionicPopup.alert({
-            title: 'Problème',
-            template: 'La géolocalisation n\'est pas fonctionnelle !'
-    
-        }).then(function(res) {
-            $state.go('home');
-        });
-        /*
-         * Callback go home
-         */
-    });
+    if(!Place.payingPark){
+      GeoLocalisation.getPosition().then(function (position) {
+          Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude,'5000', 3).success(function (data) {
+              $rootScope.loading.hide();
+              if (data.public.length == 0 && data.private.length == 0) {
+                  $ionicPopup.alert({
+                      title: 'Problème',
+                      template: 'Aucun parking ou place disponible dans les environs...'
+                  }).then(function(res) {
+                      $state.go('home');
+                  });
+              }
+              else {
+                  $scope.items = data;
+                  $scope.loadingCarPark = false;
+
+                  /**
+                   * Si tout est ok, je charge la map
+                   */
+                  $scope.currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                  var mapOptions = {
+                      center: $scope.currentPosition,
+                      zoom: 16,
+                      mapTypeId: google.maps.MapTypeId.ROADMAP,
+                      disableDefaultUI: true
+                  }
+                  $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                  $scope.directionsService = new google.maps.DirectionsService();
+                  $scope.directionsDisplay = new google.maps.DirectionsRenderer();
+                  $scope.directionsDisplay.setMap($scope.map);
+              }
+          }).error(function () {
+             $scope.items = false;
+             $rootScope.loading.hide();
+          });
+      }, function () {
+          $ionicPopup.alert({
+              title: 'Problème',
+              template: 'La géolocalisation n\'est pas fonctionnelle !'
+
+          }).then(function(res) {
+              $state.go('home');
+          });
+          /*
+           * Callback go home
+           */
+      });
+    } else {
+      //find payink park
+    }
 
     $scope.ifArrive = function(){
         console.log("Function if arrive");
@@ -114,7 +118,7 @@ controllers
             console.log("arriving soon");
             $scope.stopTimeout();
             $rootScope.modalFeedback.show();
-            $scope.stopRoute(); 
+            $scope.stopRoute();
         }
     }
 
@@ -133,21 +137,21 @@ controllers
             }, 1500);
         });
     };
-    
+
     $scope.stopTimeout = function () {
         console.log("Stop Timeout");
         $timeout.cancel($scope.promiseTimeout);
     };
-    
+
     $scope.stopRoute = function () {
         $state.go('home');
     };
-    
+
     $scope.choicePlace = function (item) {
         $scope.hasChoice = true;
         $scope.currentItem = item;
         end_pos = new google.maps.LatLng($scope.currentItem.y, $scope.currentItem.x);
-        
+
         var request = {
            origin: $scope.currentPosition,
            destination:end_pos,
@@ -164,25 +168,25 @@ controllers
             }
         });
     };
-        
+
     $scope.startRoute = function () {
         $scope.start = true;
         end_pos = new google.maps.LatLng($scope.currentItem.y, $scope.currentItem.x);
-       
+
         var request = {
            origin: $scope.currentPosition,
            destination:end_pos,
            travelMode: google.maps.TravelMode.DRIVING
         };
-        
-         
+
+
         $scope.marker = new google.maps.Marker({
             position: $scope.currentPosition,
             map: $scope.map,
             title: 'Yolo',
             icon: 'img/me.png'
         });
-        
+
         $scope.directionsService.route(request, function(result, status) {
            if (status == google.maps.DirectionsStatus.OK) {
                 console.log(result);
@@ -201,7 +205,7 @@ controllers
         $scope.stopTimeout();
         $scope.startTimeout();
     }
-    
+
     /**
      * Calcul de distance
      */
@@ -225,7 +229,7 @@ controllers
 
         var map = new google.maps.Map(document.getElementById("map"),
             mapOptions);
-        
+
         //Marker + infowindow + angularjs compiled ng-click
         var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
         var compiled = $compile(contentString)($scope);
@@ -234,7 +238,7 @@ controllers
         content: compiled[0]
         });
 
-        
+
 
         var marker = new google.maps.Marker({
             position: myLatlng,
@@ -242,41 +246,41 @@ controllers
             title: 'Uluru (Ayers Rock)',
             icon: 'img/voiture.png'
         });
-    
+
         google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(map,marker);
         });
 
-       
+
         $scope.map = map;
-        
+
         var directionsService = new google.maps.DirectionsService();
         var directionsDisplay = new google.maps.DirectionsRenderer();
 
         current_pos = new google.maps.LatLng(40.4,-78);
         end_pos = new google.maps.LatLng(6.176248545363775,48.695384785489395);
-       
+
         var request = {
            origin:current_pos,
            destination:end_pos,
            travelMode: google.maps.TravelMode.DRIVING
         };
-        
-        
+
+
         directionsService.route(request, function(result, status) {
            if (status == google.maps.DirectionsStatus.OK) {
               directionsDisplay.setDirections(result);
            }
         });
-        directionsDisplay.setMap(map); 
-          
+        directionsDisplay.setMap(map);
+
       google.maps.event.addDomListener(window, 'load', initialize);
-    
+
       $scope.centerOnMe = function() {
         if(!$scope.map) {
           return;
         }
-        
+
         navigator.geolocation.getCurrentPosition(function(pos) {
           $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
           $scope.loading.hide();
@@ -284,7 +288,7 @@ controllers
           alert('Unable to get location: ' + error.message);
         });
       };
-        
+
     };
-     
+
 }]);

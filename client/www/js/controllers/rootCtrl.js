@@ -31,5 +31,5 @@ controllers
           animation: 'slide-in-up'
       }).then(function(modal) {
           $rootScope.modalFeedback = modal;
-      });   
+      });
 }]);

@@ -15,6 +15,14 @@ controllers
         }, 1000);
     };
 
+
+    $scope.seeProfil = function () {
+        $scope.dispache = false;
+        $timeout(function () {
+            $state.go('profile');
+        }, 1000);
+    };
+
     $scope.borneElectrique = function () {
         $scope.dispache = true;
         $timeout(function () {

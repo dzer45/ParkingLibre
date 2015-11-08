@@ -93,7 +93,6 @@ controllers
                   $scope.directionsDisplay.setMap($scope.map);
               }
           }).error(function () {
-             $scope.items = false;
              $rootScope.loading.hide();
           });
       }, function () {
@@ -102,6 +101,7 @@ controllers
               template: 'La géolocalisation n\'est pas fonctionnelle !'
 
           }).then(function(res) {
+              $rootScope.loading.hide();
               $state.go('home');
           });
           /*

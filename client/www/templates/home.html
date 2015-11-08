@@ -1,6 +1,6 @@
 <ion-view>
     <ion-nav-title>
-        Parking Libre
+        <img style="margin-top: 3px;" width="250" src="img/logo_slogan.png"/>
     </ion-nav-title>
     <ion-nav-buttons side="right">
         <button class="button button-clear button-positive" ng-click="modalParametres.show()"><i class="icon ion-ios-gear-outline"></i></button>
@@ -12,6 +12,7 @@
 
     <ion-content>
         <div style="position: absolute; left: 0; right: 0; top: 0; margin-top: 15px; bottom: 0; text-align: center;">
+            <div ng-if="dispache" style="position: absolute; top: 25%; text-align: center; left:0; right:0;"><img height="128" src="img/splash.gif"/></div>
             <div class="row">
                 <div class="col">
                     <button ng-class="{'zoomOutUp':dispache,'zoomInUp':rassemble}" ng-click="cherchePlace()" class="animated button button-menu button-cherche-place">

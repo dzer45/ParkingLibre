@@ -14,10 +14,11 @@ var API_URL = "http://parkinglibre.thomasheymelot.com";
  * Check bug iphone 4
  */
 
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'ngOpenFB'])
 
-.run(['$ionicPlatform', '$rootScope', '$timeout', '$cordovaNetwork', '$cordovaDialogs', '$ionicLoading', 'Config', 'Authentification', 'GeoLocalisation', 'User', function($ionicPlatform, $rootScope, $timeout, $cordovaNetwork, $cordovaDialogs, $ionicLoading, Config, Authentification, GeoLocalisation, User) {
-    $ionicPlatform.ready(function() {
+.run(['$ionicPlatform', '$rootScope', '$timeout', '$cordovaNetwork', '$cordovaDialogs', '$ionicLoading', '$window', 'Config', 'Authentification', 'GeoLocalisation', 'User', 'ngFB', function($ionicPlatform, $rootScope, $timeout, $cordovaNetwork, $cordovaDialogs, $ionicLoading, $window, Config, Authentification, GeoLocalisation, User, ngFB) {
+	ngFB.init({appId: '1685882724989351'});
+	$ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -89,7 +90,12 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         templateUrl: "templates/profile.html",
         controller: "ProfileCtrl"
     })
-
+    .state('oauthcallback', {
+        url: "/oauthcallback",
+        cache: false,
+        templateUrl: "templates/oauthcallback.html",
+        controller: "ProfileCtrl"
+    })
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/home');
 

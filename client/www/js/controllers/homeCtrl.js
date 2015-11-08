@@ -89,5 +89,16 @@ controllers
     	$scope.closeModal();
         $scope.rassemble = true;
     };
-
+    
+    $scope.fbLogin = function () {
+        ngFB.login({scope: 'email'}).then(
+            function (response) {
+                if (response.status === 'connected') {
+                    console.log('Facebook login succeeded');
+                    $scope.closeLogin();
+                } else {
+                    alert('Facebook login failed');
+                }
+            });
+    };
 }]);

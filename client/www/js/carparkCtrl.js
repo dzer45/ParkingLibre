@@ -11,11 +11,11 @@ controllers
     $scope.steps = false;
         
     $scope.loadingCarPark = true;
-    //$rootScope.loading.show();
+    $rootScope.loading.show();
     
     GeoLocalisation.getPosition().then(function (position) {
         Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude,'5000', 3).success(function (data) {
-            //$rootScope.loading.hide();
+            $rootScope.loading.hide();
             if (data.public.length == 0 && data.private.length == 0) {
                 $ionicPopup.alert({
                     title: 'Problème',
@@ -45,7 +45,7 @@ controllers
             }
         }).error(function () {
            $scope.items = false;
-           //$rootScope.loading.hide();
+           $rootScope.loading.hide();
         });
     }, function () {
         $ionicPopup.alert({

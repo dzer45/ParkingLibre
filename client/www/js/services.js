@@ -193,11 +193,19 @@ angular.module('starter.services', [])
             return $http.get(API_URL + '/map/findFreePlaces/'+y+'/'+x+'/'+radius);
         },
         freePlace: function (x,y) {
-    		var payload = {
-    				"x" : x,
-    				"y" : y,
-    				"isFree" :"true"};
-        	return $http.post(API_URL + '/map/addPlaceInformation', payload);
+        	var req = {
+        			method: 'POST',
+        			url: API_URL + '/map/addPlaceInformation',
+        			headers: {
+        				'Content-Type': 'application/x-www-form-urlencoded'
+        			},
+        			data: {
+        				"x" : x,
+        				"y" : y,
+        				"isFree" :"true"
+        			}
+        	}
+        	return $http(req);
         }
     };
 }]);

@@ -85,17 +85,26 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         templateUrl: "templates/freeplace.html",
         controller: "FreePlaceCtrl"
     })
-
     .state('home', {
         url: "/home",
         cache: false,
         templateUrl: "templates/home.html",
         controller: "HomeCtrl"
-    });
+    })
+    .state('profile', {
+        url: "/profile",
+        cache: false,
+        templateUrl: "templates/profile.html",
+        controller: "ProfileCtrl"
+    })
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/home');
 
-});
+}).filter('html', function($sce){
+    return function(text){
+        return $sce.trustAsHtml(text);
+    };
+});;
 
 var controllers = angular.module('starter.controllers', []);

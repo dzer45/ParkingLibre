@@ -11,6 +11,13 @@
               <input type="password" placeholder="Mot de Passe" ng-model="user.password">
           </label>
       </div>
-      <button class="button button-block button-calm" ng-click="login(user)">Connexion</button>
+
+      <button style='background:#8bd5e0' class="button button-block button-calm" ng-click="login(user)">Connexion</button>
+		<label class="item">
+		    <button class="button button-block button-positive" ng-click="fbLogin()">
+		    Login with Facebook
+		    </button>
+        </label>
+
   </ion-content>
 </ion-modal-view>

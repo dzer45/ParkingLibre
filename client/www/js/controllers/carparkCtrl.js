@@ -64,6 +64,10 @@ controllers
 
     // if(Place.payingPark){
       GeoLocalisation.getPosition().then(function (position) {
+<<<<<<< HEAD
+=======
+          // $rootScope.modalFeedback.show();
+>>>>>>> 8bdad2c36b8f949710fc12cfdd2204f33da7ddaa
           Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude, Place.radius, Place.limit).success(function (data) {
               $rootScope.loading.hide();
               if (data.length == 0) {
@@ -94,7 +98,6 @@ controllers
                   $scope.directionsDisplay.setMap($scope.map);
               }
           }).error(function () {
-             $scope.items = false;
              $rootScope.loading.hide();
           });
       }, function () {
@@ -103,6 +106,7 @@ controllers
               template: 'La géolocalisation n\'est pas fonctionnelle !'
 
           }).then(function(res) {
+              $rootScope.loading.hide();
               $state.go('home');
           });
           /*
@@ -112,6 +116,15 @@ controllers
     // } else {
       //find payink park
     // }
+    $scope.launchNav = function(){
+          // var destination = [ $scope.currentItem.y, $scope.currentItem.x];
+          // var start = [$scope.currentPosition.lng() , $scope.currentPosition.lat()]
+          window.launchnavigator.navigate("London, UK","Manchester, UK").then(function() {
+            console.log("Navigator launched");
+            }, function (err) {
+              console.error(err);
+            });
+    }
 
     $scope.ifArrive = function(){
         console.log("Function if arrive");

@@ -4,3 +4,5 @@ resources/
 node_modules/
 platforms/
 plugins/
+client/platforms/
+client/www/lib

@@ -15,6 +15,14 @@ controllers
         }, 1000);
     };
 
+
+    $scope.seeProfil = function () {
+        $scope.dispache = false;
+        $timeout(function () {
+            $state.go('profile');
+        }, 1000);
+    };
+
     $scope.borneElectrique = function () {
         $scope.dispache = true;
         $timeout(function () {
@@ -81,5 +89,16 @@ controllers
     	$scope.closeModal();
         $scope.rassemble = true;
     };
-
+    
+    $scope.fbLogin = function () {
+        ngFB.login({scope: 'email'}).then(
+            function (response) {
+                if (response.status === 'connected') {
+                    console.log('Facebook login succeeded');
+                    $scope.closeLogin();
+                } else {
+                    alert('Facebook login failed');
+                }
+            });
+    };
 }]);

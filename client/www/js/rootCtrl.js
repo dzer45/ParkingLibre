@@ -1,6 +1,6 @@
 controllers
-.controller('RootCtrl', ['$scope', '$rootScope','$timeout', 'Sensitize', 'AirQuality','$q',
-    function($scope, $rootScope, $timeout, Sensitize, AirQuality, $q) {
+.controller('RootCtrl', ['$scope', '$rootScope','$timeout', 'Sensitize', 'AirQuality','$q', 'GeoLocalisation',
+    function($scope, $rootScope, $timeout, Sensitize, AirQuality, $q, $ionicPlatform, $ionicPopup, $cordovaGeolocation, GeoLocalisation) {
       $scope.elapsed = false;
       $timeout(function(){$scope.elapsed = true}, 10000);
 
@@ -8,18 +8,20 @@ controllers
         $scope.sentence = data[0].sentence;
       });
 
-      var deferred = $q.defer();
-      deferred.resolve(AirQuality.getAirQuality())
-      deferred.promise.then(function(data){
-        var num = parseInt(data[0])
-        num = ~~(num/2);
-        console.log(num)
-        $scope.rate = new Array(num)
-        $scope.rate2 = new Array(5-num)
+      GeoLocalisation.getPosition().then(function (position) {
+
+        AirQuality.getAirQuality(position.coords.latitude, position.coords.longitude).then(function(data){
+          var num = parseInt(data[0])
+          num = ~~(num/2);
+          $scope.rate = new Array(num)
+          $scope.rate2 = new Array(5-num)
+        })
+
+      }, function () {
+          $ionicPopup.alert({
+              title: 'Problème',
+              template: 'La géolocalisation n\'est pas fonctionnelle !'
+
+          });
       });
-
-
-      // var rate = parseInt(deferred.promise.data[0])
-
-
 }]);

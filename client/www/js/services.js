@@ -139,16 +139,15 @@ angular.module('starter.services', [])
 
 .factory('AirQuality', ['$http', '$q', function ($http, $q) {
     return {
-        getAirQuality: function () {
+        getAirQuality: function (latitude, longitude) {
             var deferred = $q.defer();
-            $http.get(API_URL+ '/air/quality').success(function (data) {
+            $http.get(API_URL + '/air/qualityGeo/\"'+latitude+'\"/\"'+longitude+'\"').success(function (data) {
                 deferred.resolve(data);
             }).error(function (err) {
                 deferred.reject(err);
             });
             return deferred.promise;
-        },
-        rate:null
+        }
     };
 }])
 

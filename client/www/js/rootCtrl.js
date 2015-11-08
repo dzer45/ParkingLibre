@@ -1,6 +1,6 @@
 controllers
-.controller('RootCtrl', ['$scope', '$rootScope','$timeout', 'Sensitize', 'AirQuality',
-    function($scope, $rootScope, $timeout, Sensitize, AirQuality) {
+.controller('RootCtrl', ['$scope', '$rootScope','$timeout', 'Sensitize', 'AirQuality', '$ionicModal',
+    function($scope, $rootScope, $timeout, Sensitize, AirQuality, $ionicModal) {
       $scope.elapsed = false;
       $timeout(function(){$scope.elapsed = true}, 10000);
 
@@ -14,6 +14,12 @@ controllers
       });
 
 
+      $ionicModal.fromTemplateUrl('templates/modal-feedback.html', {
+          scope: $scope,
+          animation: 'slide-in-up'
+      }).then(function(modal) {
+          $rootScope.modalFeedback = modal; 
+      });   
 
 
 }]);

@@ -8,7 +8,7 @@
     <ion-content>
         <div id="map"></div>
         <div class="list borne-electrique card" ng-hide="start">
-            <div ng-repeat="item in items | limitTo:3" ng-click="choicePlace(item)" class="item">{{item.nomDeLieu}}</div>
+            <div ng-repeat="item in items | limitTo:3" ng-click="choicePlace(item)" class="item">{{item.nomDeLieu}} <span class="badge badge-stable">{{item.distance/1000|number:1}} km</span></div>
         </div>
         <div class="list card" ng-show="start">
             <div class="item item-text-wrap">

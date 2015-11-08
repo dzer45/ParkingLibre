@@ -2,8 +2,8 @@ controllers
 .controller('CarParkCtrl', ['$rootScope', '$scope', '$ionicPlatform', '$ionicPopup', '$cordovaGeolocation', '$state', '$timeout', 'Place', 'GeoLocalisation',
     function ($rootScope, $scope, $ionicPlatform, $ionicPopup, $cordovaGeolocation, $state, $timeout, Place, GeoLocalisation) {
         
-        $scope.payingPark = Place.payingPark;
-        console.log($scope.payingPark);
+        $scope.place = Place;
+        console.log($scope.place.payingPark);
 
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //:::                                                                         :::

@@ -34,6 +34,11 @@ controllers
                 $scope.modalTypePrise.hide();
                 $rootScope.loading.hide();
                 $scope.items = data;
+                $scope.position = position;
+                angular.forEach($scope.items, function (item, key) {
+                    console.log(item);
+                    item.distance = $scope.calculDistance({lat: item.y, lng: item.x});
+                });
                 /**
                  * Si tout est ok, je charge la map
                  */
@@ -160,7 +165,11 @@ controllers
         $scope.stopTimeout();
         $scope.startTimeout();
     }
-
+    //Conversion des degrés en radian
+    function convertRad(input){
+            return (Math.PI * input)/180;
+    }
+    
     /**
      * Calcul de distance
      */

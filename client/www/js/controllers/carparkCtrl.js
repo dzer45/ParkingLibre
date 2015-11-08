@@ -64,10 +64,6 @@ controllers
 
     // if(Place.payingPark){
       GeoLocalisation.getPosition().then(function (position) {
-<<<<<<< HEAD
-=======
-          // $rootScope.modalFeedback.show();
->>>>>>> 8bdad2c36b8f949710fc12cfdd2204f33da7ddaa
           Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude, Place.radius, Place.limit).success(function (data) {
               $rootScope.loading.hide();
               if (data.length == 0) {

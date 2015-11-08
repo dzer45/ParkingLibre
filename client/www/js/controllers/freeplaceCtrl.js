@@ -6,7 +6,13 @@ controllers
 	$scope.sendPlace = false;
 
 	$scope.freeMyPlace = function () {
-            if ($rootScope.swing) return;
+            if ($rootScope.swing) {
+                $ionicPopup.alert({
+                    title: 'Attention',
+                    template: 'Vous avez déjà signalé une place !'
+                });
+                return;
+            }
             $rootScope.swing = true;
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Confirmation',

@@ -261,4 +261,6 @@
   overflow: visible !important;
   min-height: 20px !important;
   width: 80% !important;
+  border: 1px solid #f79f8b;
+  padding: 5px;
 }

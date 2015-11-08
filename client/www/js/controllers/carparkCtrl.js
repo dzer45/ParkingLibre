@@ -62,7 +62,7 @@ controllers
 
     // if(Place.payingPark){
       GeoLocalisation.getPosition().then(function (position) {
-        // $rootScope.modalFeedback.show(); pour test
+         $rootScope.modalFeedback.show(); 
           Place.findFreePlacesLimit(position.coords.latitude, position.coords.longitude, Place.radius, Place.limit).success(function (data) {
               $rootScope.loading.hide();
               if (data.public.length == 0 && data.private.length == 0) {

@@ -209,11 +209,9 @@ class MapController
     public function getAirQualityGeo($lat, $lng){
         $serviceLink = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . explode("\"", explode("\"", $lat)[1])[0] . ',' . explode("\"", explode("\"", $lng)[1])[0]. '&sensor=true';
         $list = json_decode(file_get_contents($serviceLink));
-        echo $serviceLink;
         foreach($list->results[0]->address_components as $value){
             if($value->types[0] == "postal_code"){
                 $postal_code = $value->long_name;
-                echo "$value->long_name";
             }
         }
         $content = file_get_contents("http://www.air-lorraine.org/widget/widgetrss.php?id=".$this->code_commune[$postal_code]);
@@ -222,6 +220,52 @@ class MapController
         $quality = explode("L'indice de la qualité de l'air est : ", $x->channel->item[0]->description)[1];
         $quality = explode(" ]]", $quality)[0];
         return [$indice, $quality];
+    }
+
+    /**
+     * Find a charging station
+     *
+     * @url GET /map/findChargingStation/$typeDePrise
+     */
+    public function findChargingStation($typeDePrise) {
+        $connector = new BDD();
+        $connector->connect();
+
+        $dbh = $connector->dbh;
+
+        $sth = $dbh->prepare("SELECT * FROM point_recharge as a, prise_recharge as b
+            WHERE a.id = b.id_point_recharge AND a.etatDuPoint = 'Fonctionnel' AND b.typeDePrise = :typeDePrise");
+        $sth->bindValue(':typeDePrise', $typeDePrise);
+
+        $sth->execute();
+
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        $connector->disconnect(); 
+
+        return $result;  
+    }
+
+    /**
+     * Get all types of outlet
+     *
+     * @url GET /map/getAllTypesOfOutlet
+     */
+    public function getAllTypesOfOutlet() {
+        $connector = new BDD();
+        $connector->connect();
+
+        $dbh = $connector->dbh;
+
+        $sth = $dbh->prepare("SELECT typeDePrise FROM prise_recharge GROUP BY typeDePrise");
+
+        $sth->execute();
+
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        $connector->disconnect(); 
+
+        return $result; 
     }
 
     /**

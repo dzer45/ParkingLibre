@@ -1,5 +1,5 @@
 # Apache needs to let you overrite this (AllowOverride Indexes or AllowOverride All)
-# Header set Access-Control-Allow-Origin *
+Header set Access-Control-Allow-Origin *
 DirectoryIndex index.php
 <IfModule mod_rewrite.c>
 	# Turn Rewrite Engine on

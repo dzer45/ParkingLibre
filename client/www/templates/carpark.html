@@ -12,9 +12,6 @@
             <ion-item ng-click="choicePlace(item)" class="item-avatar-left" ng-repeat="item in items.private | limitTo:3">
                 <img height="16" src="img/private.png">
                 {{item.name}}
-                <ion-option-button class="button-energized">
-                    <i class="icon ion-ios-compose-outline"></i>
-                </ion-option-button>
             </ion-item>
         </div>
         <div class="list card" ng-show="start">

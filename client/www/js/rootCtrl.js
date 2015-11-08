@@ -1,7 +1,17 @@
 controllers
-.controller('RootCtrl', ['$scope', '$rootScope','$timeout', 'Sensitize', 'AirQuality', '$ionicModal','$q',
-    function($scope, $rootScope, $timeout, Sensitize, AirQuality, $ionicModal,$q) {
-      $scope.elapsed = false;
+.controller('RootCtrl', ['$scope', '$rootScope', '$ionicLoading','$timeout', 'Sensitize', 'AirQuality', '$ionicModal','$q',
+    function($scope, $rootScope, $ionicLoading, $timeout, Sensitize, AirQuality, $ionicModal,$q) {
+        
+        $rootScope.loading = {
+            show: function () {
+                $ionicLoading.show({ template: '<ion-spinner icon="ripple"></ion-spinner>' });
+            },
+            hide: function () {
+                $ionicLoading.hide();
+            }
+        };
+        
+        $scope.elapsed = false;
       $timeout(function(){$scope.elapsed = true}, 10000);
 
       Sensitize.getSentence().success(function(data){

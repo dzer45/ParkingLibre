@@ -1,0 +1,16 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Choix du type de prise</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <label class="item item-input item-select">
+                <div class="input-label">Type</div>
+                <select ng-model="type">
+                  <option ng-repeat="item in types" ng-value="item.typeDePrise">{{ item.typeDePrise }}</option>
+                </select>
+            </label>
+            <button ng-click="findPrise(type)" class="button button-positive button-block">Lancer la recherche</button>
+        </div>
+    </ion-content>
+</ion-modal-view>  
